@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+<!-- 2024-12-19 四 00:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>模式匹配</title>
+<meta name="author" content="FAN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet"
+                    href="mystyle.css"
+                    type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">模式匹配</h1>
+<div id="outline-container-orgdf601d7" class="outline-2">
+<h2 id="orgdf601d7">变量绑定与解构</h2>
+<div class="outline-text-2" id="text-orgdf601d7">
+</div>
+<div id="outline-container-org346bc53" class="outline-3">
+<h3 id="org346bc53">变量可变性</h3>
+<div class="outline-text-3" id="text-org346bc53">
+<p>
+添加 <i>mut</i>  <code>let mut x = 5</code><br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgeae8b9f" class="outline-3">
+<h3 id="orgeae8b9f">变量解构</h3>
+<div class="outline-text-3" id="text-orgeae8b9f">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #579C4C;">//</span><span style="color: #579C4C;">&#23558;&#19977;&#20010;&#20803;&#32032;&#32452;&#21512;&#21040;&#19968;&#36215;&#24418;&#25104;&#19968;&#20010;tuple</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">t</span> = <span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #DB8E73;">'s'</span>, <span style="color: #DB8E73;">"&#30333;&#36136;"</span>.to_string<span style="color: #579C4C;">()</span><span style="color: #DB8E73;">)</span>;
+    <span style="color: #579C4C;">//</span><span style="color: #579C4C;">&#21018;&#22909;&#19982;&#20197;&#19978;&#30456;&#21453;&#65292;&#25226;&#19968;&#20010;&#32452;&#21512;&#25968;&#25454;&#32467;&#26500;&#65292;&#25286;&#35299;&#25104;&#19977;&#20010;&#19981;&#21516;&#30340;&#21464;&#37327;</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #DB8E73;">(</span>t_one, t_two, t_tree<span style="color: #DB8E73;">)</span> = t;
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"t_one: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">, t_two: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">, t_tree: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, t_one, t_two, t_tree<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+利用 let 解构<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org55c7ff0" class="outline-3">
+<h3 id="org55c7ff0">变量遮蔽</h3>
+<div class="outline-text-3" id="text-org55c7ff0">
+<p>
+使用 <i>let</i> 修饰相同的变量名,后面声明的变量会遮蔽到前面的声明.<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#23383;&#31526;&#20018;&#31867;&#22411;</span>
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">spaces</span> = <span style="color: #DB8E73;">"   "</span>;
+<span style="color: #579C4C;">// </span><span style="color: #579C4C;">usize&#25968;&#20540;&#31867;&#22411;</span>
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">spaces</span> = spaces.len<span style="color: #C586C0;">()</span>;
+</pre>
+</div>
+<ul class="org-ul">
+<li>涉及到内存再分配,没有 <i>mut</i> 修饰的变量性能好<br /></li>
+<li>优势在于不用废弃之前的变量,使用旧名字,不用去想更多的名字<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2187f82" class="outline-3">
+<h3 id="org2187f82">常量</h3>
+<div class="outline-text-3" id="text-org2187f82">
+<p>
+<code>const MAX_POINT: u32 = 100_000;</code><br />
+</p>
+<ul class="org-ul">
+<li>常量不允许使用 <i>mut</i>,自始至终不可变<br /></li>
+<li>常量使用 <i>const</i> 来声明<br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc8f1b50" class="outline-2">
+<h2 id="orgc8f1b50">匹配</h2>
+<div class="outline-text-2" id="text-orgc8f1b50">
+<p>
+利用 match 来匹配,rust 的匹配是穷尽的,必须穷举所有的可能<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">enum</span> <span style="color: #35CDAF;">Coin</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">Penny</span>,
+    <span style="color: #35CDAF;">Nickel</span>,
+    <span style="color: #35CDAF;">Dime</span>,
+    <span style="color: #35CDAF;">Quarter</span>,
+<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">value_in_cents</span><span style="color: #C586C0;">(</span><span style="color: #85DDFF;">coin</span>: <span style="color: #35CDAF;">Coin</span><span style="color: #C586C0;">)</span> -&gt; <span style="color: #35CDAF;">u8</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">match</span> coin <span style="color: #DB8E73;">{</span>
+        <span style="color: #35CDAF;">Coin</span>::<span style="color: #35CDAF;">Penny</span> =&gt; <span style="color: #B5CEA8; font-weight: bold;">1</span>,
+        <span style="color: #35CDAF;">Coin</span>::<span style="color: #35CDAF;">Nickel</span> =&gt; <span style="color: #B5CEA8; font-weight: bold;">5</span>,
+        <span style="color: #35CDAF;">Coin</span>::<span style="color: #35CDAF;">Dime</span> =&gt; <span style="color: #B5CEA8; font-weight: bold;">10</span>,
+        <span style="color: #35CDAF;">Coin</span>::<span style="color: #35CDAF;">Quarter</span> =&gt; <span style="color: #B5CEA8; font-weight: bold;">25</span>,
+    <span style="color: #DB8E73;">}</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org5681ff0" class="outline-3">
+<h3 id="org5681ff0">if let 简洁控制流</h3>
+<div class="outline-text-3" id="text-org5681ff0">
+<ul class="org-ul">
+<li>基本语法<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">if</span> <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">pattern</span> = expression <span style="color: #C586C0;">{</span>
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#21305;&#37197;&#25104;&#21151;&#26102;&#25191;&#34892;&#30340;&#20195;&#30721;&#22359;</span>
+<span style="color: #C586C0;">}</span> <span style="color: #339CDB;">else</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#21487;&#36873;&#30340; else &#22359;&#65292;&#21305;&#37197;&#22833;&#36133;&#26102;&#25191;&#34892;</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-orgecb5516" class="outline-4">
+<h4 id="orgecb5516">匹配 Option</h4>
+<div class="outline-text-4" id="text-orgecb5516">
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">config_max</span> = <span style="color: #35CDAF;">Some</span><span style="color: #C586C0;">(</span>3<span style="color: #35CDAF;">u8</span><span style="color: #C586C0;">)</span>;
+  <span style="color: #339CDB;">match</span> config_max <span style="color: #C586C0;">{</span>
+      <span style="color: #35CDAF;">Some</span><span style="color: #DB8E73;">(</span>max<span style="color: #DB8E73;">)</span> =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"The maximum is configured to be </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, max<span style="color: #DB8E73;">)</span>,
+      _ =&gt; <span style="color: #DB8E73;">()</span>,
+  <span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+两个相等<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">config_max</span> = <span style="color: #35CDAF;">Some</span><span style="color: #C586C0;">(</span>3<span style="color: #35CDAF;">u8</span><span style="color: #C586C0;">)</span>;
+  <span style="color: #339CDB;">if</span> <span style="color: #339CDB;">let</span> <span style="color: #35CDAF;">Some</span><span style="color: #C586C0;">(</span>max<span style="color: #C586C0;">)</span> = config_max <span style="color: #C586C0;">{</span>
+      <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"The maximum is configured to be </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, max<span style="color: #DB8E73;">)</span>;
+  <span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7f93f71" class="outline-4">
+<h4 id="org7f93f71">匹配元组</h4>
+<div class="outline-text-4" id="text-org7f93f71">
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">triple</span> = <span style="color: #C586C0;">(</span><span style="color: #B5CEA8; font-weight: bold;">0</span>, -<span style="color: #B5CEA8; font-weight: bold;">2</span>, <span style="color: #B5CEA8; font-weight: bold;">3</span><span style="color: #C586C0;">)</span>;
+  <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#35797;&#19968;&#35797; ^ &#23558;&#19981;&#21516;&#30340;&#20540;&#36171;&#32473; `triple`</span>
+  <span style="color: #C586C0;">println!</span><span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"Tell me about </span><span style="color: #DB8E73; font-style: italic;">{:?}</span><span style="color: #DB8E73;">"</span>, triple<span style="color: #C586C0;">)</span>;
+  <span style="color: #579C4C;">// </span><span style="color: #579C4C;">match &#21487;&#20197;&#35299;&#26500;&#19968;&#20010;&#20803;&#32452;</span>
+  <span style="color: #339CDB;">match</span> triple <span style="color: #C586C0;">{</span>
+      <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#35299;&#26500;&#20986;&#31532;&#20108;&#20010;&#21644;&#31532;&#19977;&#20010;&#20803;&#32032;</span>
+      <span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">0</span>, y, z<span style="color: #DB8E73;">)</span> =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"First is `0`, `y` is </span><span style="color: #DB8E73; font-style: italic;">{:?}</span><span style="color: #DB8E73;">, and `z` is </span><span style="color: #DB8E73; font-style: italic;">{:?}</span><span style="color: #DB8E73;">"</span>, y, z<span style="color: #DB8E73;">)</span>,
+      <span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, ..<span style="color: #DB8E73;">)</span> =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"First is `1` and the rest doesn't matter"</span><span style="color: #DB8E73;">)</span>,
+      <span style="color: #579C4C;">// </span><span style="color: #579C4C;">`..` &#21487;&#29992;&#26469;&#24573;&#30053;&#20803;&#32452;&#30340;&#20854;&#20313;&#37096;&#20998;</span>
+      _ =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"It doesn't matter what they are"</span><span style="color: #DB8E73;">)</span>,
+      <span style="color: #579C4C;">// </span><span style="color: #579C4C;">`_` &#34920;&#31034;&#19981;&#23558;&#20540;&#32465;&#23450;&#21040;&#21464;&#37327;</span>
+  <span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc6097d3" class="outline-3">
+<h3 id="orgc6097d3">ref</h3>
+<div class="outline-text-3" id="text-orgc6097d3">
+</div>
+<div id="outline-container-orgb20d188" class="outline-4">
+<h4 id="orgb20d188">创建引用</h4>
+<div class="outline-text-4" id="text-orgb20d188">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #339CDB;">ref</span> <span style="color: #85DDFF;">_is_a_reference</span> = <span style="color: #B5CEA8; font-weight: bold;">3</span>;
+</pre>
+</div>
+<p>
+这行将得到一个引用。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgdb05875" class="outline-4">
+<h4 id="orgdb05875">在 match 语句中使用 ref</h4>
+<div class="outline-text-4" id="text-orgdb05875">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"Hello"</span><span style="color: #C586C0;">)</span>;
+
+<span style="color: #339CDB;">match</span> s <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">ref</span> <span style="color: #85DDFF;">r</span> =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"r: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, r<span style="color: #DB8E73;">)</span>,
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #579C4C;">// </span><span style="color: #579C4C;">s &#20173;&#28982;&#21487;&#20197;&#20351;&#29992;&#65292;&#22240;&#20026;&#25105;&#20204;&#21482;&#26159;&#24341;&#29992;&#20102;&#23427;</span>
+<span style="color: #C586C0;">println!</span><span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"s: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, s<span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+<p>
+在这个例子中，ref r 匹配 s，但 r 是一个引用，指向 s，而不是 s 本身。<br />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2024-10-29 二 00:00</p>
+<p class="author">Author: FAN</p>
+<p class="date">Created: 2024-12-19 四 00:07</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+<!-- 2024-12-19 四 00:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>特征</title>
+<meta name="author" content="FAN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet"
+                    href="mystyle.css"
+                    type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">特征</h1>
+<div id="outline-container-org164a340" class="outline-2">
+<h2 id="org164a340">基础</h2>
+<div class="outline-text-2" id="text-org164a340">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">trait</span> <span style="color: #35CDAF;">Summary</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">summarize</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span> -&gt; <span style="color: #35CDAF;">String</span>;
+<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Post</span><span style="color: #C586C0;">{</span>...<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">Summary</span> <span style="color: #339CDB;">for</span> <span style="color: #35CDAF;">Post</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">summarize</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span> -&gt; <span style="color: #35CDAF;">String</span><span style="color: #DB8E73;">{</span>...<span style="color: #DB8E73;">}</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>特征只定义行为看起来是什么样的，而不定义行为具体是怎么样的<br /></li>
+<li><i>impl Summary for Post</i> ，读作“为 <i>Post</i> 类型实现 <i>Summary</i> 特征”<br /></li>
+</ul>
+</div>
+<div id="outline-container-org3a279bf" class="outline-3">
+<h3 id="org3a279bf">孤儿规则</h3>
+<div class="outline-text-3" id="text-org3a279bf">
+<p>
+如果你想要为类型 A 实现特征 T，那么 A 或者 T 至少有一个是在当前作用域中定义的！<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org925af40" class="outline-3">
+<h3 id="org925af40">默认实现</h3>
+<div class="outline-text-3" id="text-org925af40">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">trait</span> <span style="color: #35CDAF;">Summary</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">summarize</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span> -&gt; <span style="color: #35CDAF;">String</span> <span style="color: #DB8E73;">{</span>
+        <span style="color: #35CDAF;">String</span>::from<span style="color: #579C4C;">(</span><span style="color: #DB8E73;">"(Read more...)"</span><span style="color: #579C4C;">)</span>
+    <span style="color: #DB8E73;">}</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc8ce4f2" class="outline-3">
+<h3 id="orgc8ce4f2">特征约束</h3>
+<div class="outline-text-3" id="text-orgc8ce4f2">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">notify</span><span style="color: #C586C0;">&lt;</span><span style="color: #85DDFF;">T</span>: <span style="color: #35CDAF;">Summary</span><span style="color: #DB8E73;">&lt;</span><span style="color: #35CDAF;">T</span>,<span style="color: #35CDAF;">Output</span> = <span style="color: #35CDAF;">T</span><span style="color: #DB8E73;">&gt;</span><span style="color: #C586C0;">&gt;(</span><span style="color: #85DDFF;">item</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">)</span> -&gt; <span style="color: #35CDAF;">T</span> <span style="color: #C586C0;">{</span>...<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>item 这个参数实现了 Summary 特征,<br /></li>
+<li>Output 指定返回结果也是 T 类型<br /></li>
+</ul>
+</div>
+<div id="outline-container-orgb65d026" class="outline-4">
+<h4 id="orgb65d026">优势</h4>
+<div class="outline-text-4" id="text-orgb65d026">
+<ol class="org-ol">
+<li><code>pub fn notify(item1: &amp;impl Summary, item2: &amp;impl Summary) {}</code><br /></li>
+<li><code>pub fn notify&lt;T: Summary&gt;(item1: &amp;T, item2: &amp;T) {}</code><br /></li>
+</ol>
+<p>
+特征约束可以使参数 item1 和 item2 都拥有相同的参数(结构体),而&lt;1&gt;中参数则可有不同的结构体传入<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgd948a61" class="outline-4">
+<h4 id="orgd948a61">多重约束</h4>
+<div class="outline-text-4" id="text-orgd948a61">
+<p>
+<code>pub fn notify(item: &amp;(impl Summary + Display)) {}</code><br />
+或者使用特征约束的形式<br />
+<code>pub fn notify&lt;T: Summary + Display &gt;(item: &amp;T) {}</code><br />
+</p>
+</div>
+</div>
+<div id="outline-container-org1b4280d" class="outline-4">
+<h4 id="org1b4280d">where 约束</h4>
+<div class="outline-text-4" id="text-org1b4280d">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">some_function</span><span style="color: #C586C0;">&lt;</span><span style="color: #85DDFF;">T</span>: <span style="color: #35CDAF;">Display</span> + <span style="color: #35CDAF;">Clone</span>, <span style="color: #85DDFF;">U</span>: <span style="color: #35CDAF;">Clone</span> + <span style="color: #35CDAF;">Debug</span><span style="color: #C586C0;">&gt;(</span><span style="color: #85DDFF;">t</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">T</span>, <span style="color: #85DDFF;">u</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">U</span><span style="color: #C586C0;">)</span> -&gt; <span style="color: #35CDAF;">i32</span> <span style="color: #C586C0;">{}</span>
+</pre>
+</div>
+<p>
+where 可以简化特征约束<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">some_function</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span>, <span style="color: #35CDAF;">U</span><span style="color: #C586C0;">&gt;(</span><span style="color: #85DDFF;">t</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">T</span>, <span style="color: #85DDFF;">u</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">U</span><span style="color: #C586C0;">)</span> -&gt; <span style="color: #35CDAF;">i32</span>
+    <span style="color: #339CDB;">where</span> <span style="color: #85DDFF;">T</span>: <span style="color: #35CDAF;">Display</span> + <span style="color: #35CDAF;">Clone</span>,
+          <span style="color: #85DDFF;">U</span>: <span style="color: #35CDAF;">Clone</span> + <span style="color: #35CDAF;">Debug</span>
+<span style="color: #C586C0;">{}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org617261f" class="outline-4">
+<h4 id="org617261f">使用约束特征有条件的实现方法</h4>
+<div class="outline-text-4" id="text-org617261f">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Pair</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;{}</span>
+<span style="color: #339CDB;">impl</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;</span> <span style="color: #35CDAF;">Pair</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{}</span>
+<span style="color: #339CDB;">impl</span><span style="color: #C586C0;">&lt;</span><span style="color: #85DDFF;">T</span>: <span style="color: #35CDAF;">Display</span> + <span style="color: #35CDAF;">PartialOrd</span><span style="color: #C586C0;">&gt;</span> <span style="color: #35CDAF;">Pair</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;{</span>
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">cmp_display</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">){}</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+是有实现了 Display 和 PartialOrd 特征的 Pair 结构体才能拥有 cmp_display 函数<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgfceb435" class="outline-4">
+<h4 id="orgfceb435">有条件的实现特征</h4>
+<div class="outline-text-4" id="text-orgfceb435">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">impl</span><span style="color: #C586C0;">&lt;</span><span style="color: #85DDFF;">T</span>: <span style="color: #35CDAF;">Display</span><span style="color: #C586C0;">&gt;</span> <span style="color: #35CDAF;">ToString</span> <span style="color: #339CDB;">for</span> <span style="color: #35CDAF;">T</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">--snip--</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+为实现 Display 特征的结构体,再实现 ToString 函数<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org75c5101" class="outline-4">
+<h4 id="org75c5101">返回特征</h4>
+<div class="outline-text-4" id="text-org75c5101">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">returns_summarizable</span><span style="color: #C586C0;">()</span> -&gt; <span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">Summary</span><span style="color: #C586C0;">{</span> some_struct_impl_summary<span style="color: #DB8E73;">{}</span> <span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+返回一个实现了 Summary 特征的结构体<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb5ede4d" class="outline-3">
+<h3 id="orgb5ede4d">派生特征</h3>
+<div class="outline-text-3" id="text-orgb5ede4d">
+<p>
+被 derive 标记的对象会自动实现对应的默认特征代码，继承相应的功能<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org50f4e67" class="outline-2">
+<h2 id="org50f4e67">特征对象</h2>
+<div class="outline-text-2" id="text-org50f4e67">
+</div>
+<div id="outline-container-org0831f53" class="outline-3">
+<h3 id="org0831f53">定义</h3>
+<div class="outline-text-3" id="text-org0831f53">
+<ul class="org-ul">
+<li>特征对象指的是实现了某个特征的类型实例(结构体)<br /></li>
+<li>只有在运行时,才能知道调用什么方法, <b>动态分发</b><br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust" id="org16e570e"><span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">trait</span> <span style="color: #35CDAF;">Draw</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">draw</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Button</span> <span style="color: #C586C0;">{</span>...<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">Draw</span> <span style="color: #339CDB;">for</span> <span style="color: #35CDAF;">Button</span><span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">draw</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">){}</span>
+<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Box</span><span style="color: #C586C0;">{</span>...<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">Draw</span> <span style="color: #339CDB;">for</span> <span style="color: #35CDAF;">Box</span><span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">draw</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">){}</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+这里的 <i>Button</i> 和 <i>Box</i> 就是待实例化的特征对象<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust" id="orgc8af700"><span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Screen</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">pub</span> <span style="color: #85DDFF;">components</span>: <span style="color: #35CDAF;">Vec</span><span style="color: #DB8E73;">&lt;</span><span style="color: #35CDAF;">Box</span><span style="color: #579C4C;">&lt;</span><span style="color: #339CDB;">dyn</span> <span style="color: #35CDAF;">Draw</span><span style="color: #579C4C;">&gt;</span><span style="color: #DB8E73;">&gt;</span>,
+<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">Screen</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">run</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span> <span style="color: #DB8E73;">{</span>
+        <span style="color: #339CDB;">for</span> <span style="color: #85DDFF;">component</span> <span style="color: #339CDB;">in</span> <span style="color: #339CDB;">self</span>.components.iter<span style="color: #579C4C;">()</span> <span style="color: #579C4C;">{</span>
+            component.draw<span style="color: #85DDFF;">()</span>;
+        <span style="color: #579C4C;">}</span>
+    <span style="color: #DB8E73;">}</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+<i>componets</i> 就是特征对象的修饰,实现了特征 <i>Draw</i> 的动态数组<br />
+<i>dyn</i> 关键字动态特征对象<br />
+利用 <i>run</i> 方法来包裹 <i>draw</i> 函数<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust" id="org73a6c1e"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">screen</span> = <span style="color: #35CDAF;">Screen</span> <span style="color: #DB8E73;">{</span>
+        <span style="color: #85DDFF;">components</span>: <span style="color: #85DDFF; font-weight: bold;">vec!</span><span style="color: #579C4C;">[</span>
+            <span style="color: #35CDAF;">Box</span>::new<span style="color: #85DDFF;">(</span><span style="color: #35CDAF;">SelectBox</span> <span style="color: #C586C0;">{</span>...<span style="color: #C586C0;">}</span><span style="color: #85DDFF;">)</span>,
+            <span style="color: #35CDAF;">Box</span>::new<span style="color: #85DDFF;">(</span><span style="color: #35CDAF;">Button</span> <span style="color: #C586C0;">{</span>...<span style="color: #C586C0;">}</span><span style="color: #85DDFF;">)</span>,
+        <span style="color: #579C4C;">]</span>,
+    <span style="color: #DB8E73;">}</span>;
+
+    screen.run<span style="color: #DB8E73;">()</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+实例化 Screen 屏幕,利用动态数组,来分别执行每个<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org4a0b7ce" class="outline-3">
+<h3 id="org4a0b7ce">限制</h3>
+<div class="outline-text-3" id="text-org4a0b7ce">
+<ul class="org-ul">
+<li>方法的返回类型不能是 <i>Self</i><br /></li>
+<li>方法没有任何泛型参数<br /></li>
+</ul>
+<p>
+例子:<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Screen</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">pub</span> <span style="color: #85DDFF;">components</span>: <span style="color: #35CDAF;">Vec</span><span style="color: #DB8E73;">&lt;</span><span style="color: #35CDAF;">Box</span><span style="color: #579C4C;">&lt;</span><span style="color: #339CDB;">dyn</span> <span style="color: #35CDAF;">Clone</span><span style="color: #579C4C;">&gt;</span><span style="color: #DB8E73;">&gt;</span>,
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org799393f" class="outline-3">
+<h3 id="org799393f">关联类型</h3>
+<div class="outline-text-3" id="text-org799393f">
+<ul class="org-ul">
+<li>比泛型简单,增加可读性<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">trait</span> <span style="color: #35CDAF;">Iterator</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">type</span> <span style="color: #35CDAF;">Item</span>;
+
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">next</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> <span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span> -&gt; <span style="color: #35CDAF;">Option</span><span style="color: #DB8E73;">&lt;</span><span style="color: #35CDAF;">Self</span>::<span style="color: #35CDAF;">Item</span><span style="color: #DB8E73;">&gt;</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>由 <i>type</i> 定义<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">Iterator</span> <span style="color: #339CDB;">for</span> <span style="color: #35CDAF;">Counter</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">type</span> <span style="color: #35CDAF;">Item</span> = <span style="color: #35CDAF;">u32</span>;
+
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">next</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> <span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span> -&gt; <span style="color: #35CDAF;">Option</span><span style="color: #DB8E73;">&lt;</span><span style="color: #35CDAF;">Self</span>::<span style="color: #35CDAF;">Item</span><span style="color: #DB8E73;">&gt;</span> <span style="color: #DB8E73;">{</span>
+        <span style="color: #579C4C;">// </span><span style="color: #579C4C;">--snip--</span>
+    <span style="color: #DB8E73;">}</span>
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">c</span> = <span style="color: #35CDAF;">Counter</span><span style="color: #DB8E73;">{</span>..<span style="color: #DB8E73;">}</span>
+    c.next<span style="color: #DB8E73;">()</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6cc0248" class="outline-3">
+<h3 id="org6cc0248">默认泛型类型参数</h3>
+<div class="outline-text-3" id="text-org6cc0248">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">trait</span> <span style="color: #35CDAF;">Add</span><span style="color: #C586C0;">&lt;</span>RHS=Self<span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">type</span> <span style="color: #35CDAF;">Output</span>;
+
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">add</span><span style="color: #DB8E73;">(</span><span style="color: #339CDB;">self</span>, <span style="color: #85DDFF;">rhs</span>: <span style="color: #35CDAF;">RHS</span><span style="color: #DB8E73;">)</span> -&gt; <span style="color: #35CDAF;">Self</span>::<span style="color: #35CDAF;">Output</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org655ef4c" class="outline-3">
+<h3 id="org655ef4c">不同特征同名方法</h3>
+<div class="outline-text-3" id="text-org655ef4c">
+<ul class="org-ul">
+<li>初始化<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust" id="org841001f"><span style="color: #339CDB;">trait</span> <span style="color: #35CDAF;">Pilot</span><span style="color: #C586C0;">{</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">fly</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span> <span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">trait</span> <span style="color: #35CDAF;">Wizard</span><span style="color: #C586C0;">{</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">fly</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span> <span style="color: #C586C0;">}</span>
+<span style="color: #35CDAF;">Struct</span> <span style="color: #35CDAF;">Human</span>;
+</pre>
+</div>
+<ul class="org-ul">
+<li>使用<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">person</span> = <span style="color: #35CDAF;">Human</span>;
+    <span style="color: #35CDAF;">Pilot</span>::fly<span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>person<span style="color: #DB8E73;">)</span>; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#35843;&#29992;Pilot&#29305;&#24449;&#19978;&#30340;&#26041;&#27861;</span>
+    <span style="color: #35CDAF;">Wizard</span>::fly<span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>person<span style="color: #DB8E73;">)</span>; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#35843;&#29992;Wizard&#29305;&#24449;&#19978;&#30340;&#26041;&#27861;</span>
+    person.fly<span style="color: #DB8E73;">()</span>; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#35843;&#29992;Human&#31867;&#22411;&#33258;&#36523;&#30340;&#26041;&#27861;</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>完全限定语法<br />
+<code>&lt;Type as Trait&gt;::function(receiver_if_method, next_arg, ...);</code><br />
+如果特征方法参数没有 self 的时候(<a href="20241024213610-函数.html#ID-5f36dec0-1736-4a52-bf7c-ff727f8c2bd2">关联函数</a>),就使用完全限定语法<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">trait</span> <span style="color: #35CDAF;">Animal</span><span style="color: #C586C0;">{</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">baby_name</span><span style="color: #DB8E73;">()</span> <span style="color: #C586C0;">}</span>
+<span style="color: #35CDAF;">Struct</span> <span style="color: #35CDAF;">Dog</span>;
+<span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">Dog</span><span style="color: #C586C0;">{</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">baby_name</span><span style="color: #DB8E73;">()</span> <span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">Animal</span> <span style="color: #339CDB;">for</span> <span style="color: #35CDAF;">Dog</span><span style="color: #C586C0;">{</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">baby_name</span><span style="color: #DB8E73;">()</span> <span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #DB8E73;">&lt;</span><span style="color: #35CDAF;">Dog</span> <span style="color: #339CDB;">as</span> <span style="color: #35CDAF;">Animal</span><span style="color: #DB8E73;">&gt;</span>::baby_name<span style="color: #DB8E73;">()</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org56b1296" class="outline-3">
+<h3 id="org56b1296">超级特征</h3>
+<div class="outline-text-3" id="text-org56b1296">
+<p>
+让某个特征使用另一个特征的功能<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">trait</span> <span style="color: #85DDFF;">OutlinePrint</span>: <span style="color: #35CDAF;">Display</span> <span style="color: #C586C0;">{}</span>
+</pre>
+</div>
+<p>
+如果你想要实现 <i>OutlinePrint</i> 特征，首先你需要实现 <i>Display</i> 特征<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org69690a1" class="outline-3">
+<h3 id="org69690a1"><span class="todo TODO">TODO</span> newtype</h3>
+<div class="outline-text-3" id="text-org69690a1">
+<p>
+在外部类型上实现外部特征<br />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2024-11-04 一 00:00</p>
+<p class="author">Author: FAN</p>
+<p class="date">Created: 2024-12-19 四 00:07</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+<!-- 2024-12-19 四 00:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>关键字</title>
+<meta name="author" content="FAN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet"
+                    href="mystyle.css"
+                    type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">关键字</h1>
+<div id="outline-container-orgd896684" class="outline-2">
+<h2 id="orgd896684">关键字</h2>
+<div class="outline-text-2" id="text-orgd896684">
+<ul class="org-ul">
+<li><i>as</i> - 强制类型转换，消除特定包含项的 trait 的歧义，或者对 use 语句中的项重命名<br /></li>
+<li><i>async</i> - 返回一个 Future 而不是阻塞当前线程<br /></li>
+<li><i>await</i> - 暂停执行直到 Future 的结果就绪<br /></li>
+<li><i>break</i> - 立刻退出循环<br /></li>
+<li><i>const</i> - 定义常量或不变裸指针（constant raw pointer）<br /></li>
+<li><i>continue</i> - 继续进入下一次循环迭代<br /></li>
+<li><i>crate</i> - 在模块路径中，代指 crate root<br /></li>
+<li><i>dyn</i> - 动态分发 trait 对象<br /></li>
+<li><i>else</i> - 作为 if 和 if let 控制流结构的 fallback<br /></li>
+<li><i>enum</i> - 定义一个枚举<br /></li>
+<li><i>extern</i> - 链接一个外部函数或变量<br /></li>
+<li><i>false</i> - 布尔字面值 false<br /></li>
+<li><i>fn</i> - 定义一个函数或 函数指针类型 (function pointer type)<br /></li>
+<li><i>for</i> - 遍历一个迭代器或实现一个 trait 或者指定一个更高级的生命周期<br /></li>
+<li><i>if</i> - 基于条件表达式的结果分支<br /></li>
+<li><i>impl</i> - 实现自有或 trait 功能<br /></li>
+<li><i>in</i> - for 循环语法的一部分<br /></li>
+<li><i>let</i> - 绑定一个变量<br /></li>
+<li><i>loop</i> - 无条件循环<br /></li>
+<li><i>match</i> - 模式匹配<br /></li>
+<li><i>mod</i> - 定义一个模块<br /></li>
+<li><i>move</i> - 使闭包获取其所捕获项的所有权<br /></li>
+<li><i>mut</i> - 表示引用、裸指针或模式绑定的可变性<br /></li>
+<li><i>pub</i> - 表示结构体字段、impl 块或模块的公有可见性<br /></li>
+<li><i>ref</i> - 通过引用绑定<br /></li>
+<li><i>return</i> - 从函数中返回<br /></li>
+<li><i>Self</i> - 定义或实现 trait 的类型的类型别名<br /></li>
+<li><i>self</i> - 表示方法本身或当前模块<br /></li>
+<li><i>static</i> - 表示全局变量或在整个程序执行期间保持其生命周期<br /></li>
+<li><i>struct</i> - 定义一个结构体<br /></li>
+<li><i>super</i> - 表示当前模块的父模块<br /></li>
+<li><i>trait</i> - 定义一个 trait<br /></li>
+<li><i>true</i> - 布尔字面值 true<br /></li>
+<li><i>type</i> - 定义一个类型别名或关联类型<br /></li>
+<li><i>union</i> - 定义一个 union 并且是 union 声明中唯一用到的关键字<br /></li>
+<li><i>unsafe</i> - 表示不安全的代码、函数、trait 或实现<br /></li>
+<li><i>use</i> - 引入外部空间的符号<br /></li>
+<li><i>where</i> - 表示一个约束类型的从句<br /></li>
+<li><i>while</i> - 基于一个表达式的结果判断是否进行循环<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9606c25" class="outline-2">
+<h2 id="org9606c25">符号</h2>
+<div class="outline-text-2" id="text-org9606c25">
+</div>
+<div id="outline-container-org2ee2c58" class="outline-3">
+<h3 id="org2ee2c58"><b>_</b> 忽略该值或者类型</h3>
+<div class="outline-text-3" id="text-org2ee2c58">
+<ul class="org-ul">
+<li><i>for _ in 0..10</i> 只循环 10 次,不使用变量<br /></li>
+<li>可忽略未使用的变量<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgafe1813" class="outline-3">
+<h3 id="orgafe1813"><b>..</b> 代表剩余可以忽略的字段</h3>
+<div class="outline-text-3" id="text-orgafe1813">
+<p>
+<i>for i in 1..=5</i> =&gt; 1 到 5<br />
+<i>for i in 1..5</i> =&gt; 1 到 4<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org2653d4f" class="outline-3">
+<h3 id="org2653d4f"><b>?</b> 传播错误</h3>
+<div class="outline-text-3" id="text-org2653d4f">
+</div>
+<div id="outline-container-org625f5de" class="outline-4">
+<h4 id="org625f5de">相当于 <i>match</i></h4>
+<div class="outline-text-4" id="text-org625f5de">
+</div>
+<ul class="org-ul">
+<li><a id="org09c4309"></a>返回 <i>Result</i><br />
+<div class="outline-text-5" id="text-org09c4309">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">f</span> = <span style="color: #35CDAF;">File</span>::open<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"hello.txt"</span><span style="color: #C586C0;">)</span><span style="color: #C586C0; font-weight: bold;">?</span>;
+
+<span style="color: #339CDB;">match</span> f.read_to_string<span style="color: #C586C0;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> s<span style="color: #C586C0;">)</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#35835;&#21462;&#25104;&#21151;&#65292;&#36820;&#22238;Ok&#23553;&#35013;&#30340;&#23383;&#31526;&#20018;</span>
+    <span style="color: #35CDAF;">Ok</span><span style="color: #DB8E73;">(</span>_<span style="color: #DB8E73;">)</span> =&gt; <span style="color: #35CDAF;">Ok</span><span style="color: #DB8E73;">(</span>s<span style="color: #DB8E73;">)</span>,
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#23558;&#38169;&#35823;&#21521;&#19978;&#20256;&#25773;</span>
+    <span style="color: #35CDAF;">Err</span><span style="color: #DB8E73;">(</span>e<span style="color: #DB8E73;">)</span> =&gt; <span style="color: #35CDAF;">Err</span><span style="color: #DB8E73;">(</span>e<span style="color: #DB8E73;">)</span>,
+<span style="color: #C586C0;">}</span>
+<span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#30456;&#24403;&#20110;</span>
+f.read_to_string<span style="color: #C586C0;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> s<span style="color: #C586C0;">)</span><span style="color: #C586C0; font-weight: bold;">?</span>;
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orga6836d4"></a>返回 <i>Option</i><br />
+<div class="outline-text-5" id="text-orga6836d4">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">enum</span> <span style="color: #35CDAF;">Option</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">Some</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">T</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #35CDAF;">None</span>
+<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">first</span><span style="color: #C586C0;">(</span><span style="color: #85DDFF;">arr</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #DB8E73;">[</span><span style="color: #35CDAF;">i32</span><span style="color: #DB8E73;">]</span><span style="color: #C586C0;">)</span>/ -&gt; <span style="color: #35CDAF;">Option</span><span style="color: #C586C0;">&lt;</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">i32</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+   <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">v</span> = arr.get<span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">0</span><span style="color: #DB8E73;">)</span><span style="color: #C586C0; font-weight: bold;">?</span>;
+   <span style="color: #35CDAF;">Some</span><span style="color: #DB8E73;">(</span>v<span style="color: #DB8E73;">)</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+如果 get 的结果是 None，则直接返回 None，如果是 Some(&amp;i32)，则把里面的值赋给 v<br />
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org423b7fa" class="outline-4">
+<h4 id="org423b7fa">自动进行类型提升</h4>
+<div class="outline-text-4" id="text-org423b7fa">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">open_file</span><span style="color: #C586C0;">()</span>/ -&gt; <span style="color: #35CDAF;">Result</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">File</span>, <span style="color: #35CDAF;">Box</span><span style="color: #DB8E73;">&lt;</span><span style="color: #339CDB;">dyn</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">error</span>::<span style="color: #35CDAF;">Error</span><span style="color: #DB8E73;">&gt;</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">f</span> = <span style="color: #35CDAF;">File</span>::open<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"hello.txt"</span><span style="color: #DB8E73;">)</span><span style="color: #C586C0; font-weight: bold;">?</span>;
+    <span style="color: #35CDAF;">Ok</span><span style="color: #DB8E73;">(</span>f<span style="color: #DB8E73;">)</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+<i>std::error::Error</i> 是 <i>std::io::Error</i> 的父类<br />
+<code>File::open</code> 报的是 <i>std::io::Error</i> 的类型错误<br />
+<code>open_file</code> 报的是 <i>std::error::Error</i> 的类型错误<br />
+通过 <b>？</b> 与返回值 <i>Box&lt;dyn std::error::Error&gt;</i> 即可将错误类型向上转换<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgd744cd0" class="outline-4">
+<h4 id="orgd744cd0">链式调用</h4>
+<div class="outline-text-4" id="text-orgd744cd0">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">read_username_from_file</span><span style="color: #C586C0;">()</span>/ -&gt; <span style="color: #35CDAF;">Result</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">String</span>, <span style="color: #339CDB;">io</span>::<span style="color: #35CDAF;">Error</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">s</span> = <span style="color: #35CDAF;">String</span>::new<span style="color: #DB8E73;">()</span>;
+    <span style="color: #35CDAF;">File</span>::open<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"hello.txt"</span><span style="color: #DB8E73;">)</span><span style="color: #C586C0; font-weight: bold;">?</span>.read_to_string<span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> s<span style="color: #DB8E73;">)</span><span style="color: #C586C0; font-weight: bold;">?</span>;
+    <span style="color: #35CDAF;">Ok</span><span style="color: #DB8E73;">(</span>s<span style="color: #DB8E73;">)</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+<b>？</b> 操作符需要一个变量来承载正确的值, <b>?</b> 只能用于以下形式<br />
+</p>
+<ul class="org-ul">
+<li><code>let v = xxx()?;</code><br /></li>
+<li><code>xxx()?.yyy()?;</code><br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org03c8083" class="outline-3">
+<h3 id="org03c8083"><b>&amp;</b> 引用</h3>
+<div class="outline-text-3" id="text-org03c8083">
+<p>
+<code>let y = &amp;x;</code><br />
+获取对象的地址<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgcc35fb2" class="outline-3">
+<h3 id="orgcc35fb2"><b>*</b> 解引用</h3>
+<div class="outline-text-3" id="text-orgcc35fb2">
+<p>
+<code>assert_eq!(5, *y)</code><br />
+根据地址获取对象的值<br />
+</p>
+<ul class="org-ul">
+<li>基本数据类型不能解引用<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdf67591" class="outline-3">
+<h3 id="orgdf67591"><b>'</b> 生命周期</h3>
+<div class="outline-text-3" id="text-orgdf67591">
+<p>
+<code>&amp;'a i32</code><br />
+具有显式生命周期的引用<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">useless</span><span style="color: #C586C0;">&lt;</span>'<span style="color: #85DDFF;">a</span><span style="color: #C586C0;">&gt;(</span><span style="color: #85DDFF;">first</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>'<span style="color: #85DDFF;">a</span> <span style="color: #35CDAF;">i32</span>, <span style="color: #85DDFF;">second</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>'<span style="color: #85DDFF;">a</span> <span style="color: #35CDAF;">i32</span><span style="color: #C586C0;">)</span> <span style="color: #C586C0;">{}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org69b28f3" class="outline-3">
+<h3 id="org69b28f3"><b>@</b> 模式绑定</h3>
+<div class="outline-text-3" id="text-org69b28f3">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">x</span> = <span style="color: #35CDAF;">Some</span><span style="color: #C586C0;">(</span><span style="color: #B5CEA8; font-weight: bold;">5</span><span style="color: #C586C0;">)</span>;
+<span style="color: #339CDB;">match</span> x <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">Some</span><span style="color: #DB8E73;">(</span>y @ <span style="color: #B5CEA8; font-weight: bold;">1</span>..=10<span style="color: #DB8E73;">)</span> =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Matched y: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, y<span style="color: #DB8E73;">)</span>,
+    _ =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"No match"</span><span style="color: #DB8E73;">)</span>,
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+y 被绑定到 Some 中的值，同时我们还检查这个值是否在 1 到 10 之间<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org6665c92" class="outline-3">
+<h3 id="org6665c92"><b>|</b> 模式匹配</h3>
+<div class="outline-text-3" id="text-org6665c92">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">match</span> some_value <span style="color: #C586C0;">{</span>
+    <span style="color: #B5CEA8; font-weight: bold;">1</span> | <span style="color: #B5CEA8; font-weight: bold;">2</span> =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"It's 1 or 2"</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #B5CEA8; font-weight: bold;">3</span> =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"It's 3"</span><span style="color: #DB8E73;">)</span>,
+    _ =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"It's something else"</span><span style="color: #DB8E73;">)</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+在模式匹配中，| 用于分隔不同的模式。<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7e232dd" class="outline-2">
+<h2 id="org7e232dd">宏</h2>
+<div class="outline-text-2" id="text-org7e232dd">
+<ul class="org-ul">
+<li><i>macro_rules!</i> 自定义宏<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6b59194" class="outline-2">
+<h2 id="org6b59194">特征</h2>
+<div class="outline-text-2" id="text-org6b59194">
+</div>
+<div id="outline-container-orgae893bd" class="outline-3">
+<h3 id="orgae893bd"><b>Copy</b> 复制</h3>
+<div class="outline-text-3" id="text-orgae893bd">
+<ul class="org-ul">
+<li>作用:赋值的过程即是拷贝的过程<br /></li>
+<li>规则:任何基本类型的组合可以 Copy<br />
+<ul class="org-ul">
+<li><i>所有整数类型</i> ，比如 u32<br /></li>
+<li><i>布尔类型</i> ，bool，它的值是 true 和 false<br /></li>
+<li><i>所有浮点数类型</i> ，比如 f64<br /></li>
+<li><i>字符类型</i> ，char<br /></li>
+<li><i>元组</i> ，当且仅当其包含的类型也都是 Copy 的时候。比如，(i32, i32) 是 Copy 的，但 (i32, String) 就不是<br /></li>
+<li><i>不可变引用 &amp;T</i><br /></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org854a368" class="outline-3">
+<h3 id="org854a368"><i>Clone</i> 克隆</h3>
+</div>
+<div id="outline-container-orgb4af613" class="outline-3">
+<h3 id="orgb4af613"><i>Hash</i> 固定大小的值映射</h3>
+</div>
+<div id="outline-container-orgafe2e19" class="outline-3">
+<h3 id="orgafe2e19"><i>Default</i> 默认值</h3>
+</div>
+<div id="outline-container-org659f3ae" class="outline-3">
+<h3 id="org659f3ae"><i>Debug</i> 开发者输出</h3>
+</div>
+<div id="outline-container-org72ae3f4" class="outline-3">
+<h3 id="org72ae3f4"><i>PartialEq</i> 等值比较</h3>
+</div>
+<div id="outline-container-org81cea42" class="outline-3">
+<h3 id="org81cea42"><i>Eq</i> 等值比较</h3>
+</div>
+<div id="outline-container-org19018e1" class="outline-3">
+<h3 id="org19018e1"><b>Fn</b> <a href="20241114195440-函数式编程.html#ID-3a26c2c6-a0d8-4066-9041-d3351db8b16b">闭包</a></h3>
+</div>
+<div id="outline-container-org13c87ca" class="outline-3">
+<h3 id="org13c87ca"><i>FnMut</i> 在函数调用时,可以修改其捕获的环境</h3>
+</div>
+</div>
+<div id="outline-container-org07ad1b7" class="outline-2">
+<h2 id="org07ad1b7">注解(属性)</h2>
+<div class="outline-text-2" id="text-org07ad1b7">
+<p>
+下面是所有内置属性的索引表：<br />
+</p>
+</div>
+<div id="outline-container-orgfdec3db" class="outline-3">
+<h3 id="orgfdec3db">条件编译(Conditional compilation)</h3>
+<div class="outline-text-3" id="text-orgfdec3db">
+<p>
+<i>cfg</i> — 控制条件编译。<br />
+<i>cfg_attr</i> — 选择性包含属性。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org801cc49" class="outline-3">
+<h3 id="org801cc49">测试(Testing)</h3>
+<div class="outline-text-3" id="text-org801cc49">
+<p>
+<i>test</i> — 将函数标记为测试函数。<br />
+<i>ignore</i> — 禁止测试此函数。<br />
+<i>should_panic</i> — 表示测试应该产生 panic。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgb5e974a" class="outline-3">
+<h3 id="orgb5e974a">派生(Derive)</h3>
+<div class="outline-text-3" id="text-orgb5e974a">
+<p>
+<i>derive</i> — 自动部署 trait 实现<br />
+<i>automatically_derived</i> — 用在由 derive 创建的实现上的标记。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org38139ee" class="outline-3">
+<h3 id="org38139ee">宏(Macros)</h3>
+<div class="outline-text-3" id="text-org38139ee">
+<p>
+<i>macro_export</i> — 导出声明宏（macro_rules 宏），用于跨 crate 的使用。<br />
+<i>macro_use</i> — 扩展宏可见性，或从其他 crate 导入宏。<br />
+<i>proc_macro</i> — 定义类函数宏。<br />
+<i>proc_macro_derive</i> — 定义派生宏。<br />
+<i>proc_macro_attribute</i> — 定义属性宏。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgd7960fe" class="outline-3">
+<h3 id="orgd7960fe">诊断(Diagnostics)</h3>
+<div class="outline-text-3" id="text-orgd7960fe">
+<p>
+<i>allow、warn、deny、forbid</i> — 更改默认的 lint 检查级别。<br />
+<i>deprecated</i> — 生成弃用通知。<br />
+<i>must_use</i> — 为未使用的值生成 lint 提醒。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org13658e3" class="outline-3">
+<h3 id="org13658e3">ABI、链接(linking)、符号(symbol)、和 FFI</h3>
+<div class="outline-text-3" id="text-org13658e3">
+<p>
+<i>link</i> — 指定要与外部(extern)块链接的本地库。<br />
+<i>link_name</i> — 指定外部(extern)块中的函数或静态项的符号(symbol)名。<br />
+<i>no_link</i> — 防止链接外部 crate。<br />
+<i>repr</i> — 控制类型的布局。<br />
+<i>crate_type</i> — 指定 crate 的类别(库、可执行文件等)。<br />
+<i>no_main</i> — 禁止发布 main 符号(symbol)。<br />
+<i>export_name</i> — 指定函数或静态项导出的符号(symbol)名。<br />
+<i>link_section</i> — 指定用于函数或静态项的对象文件的部分。<br />
+<i>no_mangle</i> — 禁用对符号(symbol)名编码。<br />
+<i>used</i> — 强制编译器在输出对象文件中保留静态项。<br />
+<i>crate_name</i> — 指定 crate 名。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org2c4526b" class="outline-3">
+<h3 id="org2c4526b">代码生成(Code generation)</h3>
+<div class="outline-text-3" id="text-org2c4526b">
+<p>
+<i>inline</i> — 内联代码提示。<br />
+<i>cold</i> — 提示函数不太可能被调用。<br />
+<i>no_builtins</i> — 禁用某些内置函数。<br />
+<i>target_feature</i> — 配置特定于平台的代码生成。<br />
+<i>track_caller</i> - 将父调用位置传递给 std::panic::Location::caller()。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgb4ca6fd" class="outline-3">
+<h3 id="orgb4ca6fd">文档(Documentation)</h3>
+<div class="outline-text-3" id="text-orgb4ca6fd">
+<p>
+<i>doc</i> — 指定文档。更多信息见 The Rustdoc Book。Doc 注释会被转换为 doc 属性。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orge3c2176" class="outline-3">
+<h3 id="orge3c2176">预导入包(Preludes)</h3>
+<div class="outline-text-3" id="text-orge3c2176">
+<p>
+<i>no_std</i> — 从预导入包中移除 std。<br />
+<i>no_implicit_prelude</i> — 禁用模块内的预导入包查找。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgc80fcbf" class="outline-3">
+<h3 id="orgc80fcbf">模块(Modules)</h3>
+<div class="outline-text-3" id="text-orgc80fcbf">
+<p>
+<i>path</i> — 指定模块的源文件名。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org426aec0" class="outline-3">
+<h3 id="org426aec0">极限值设置(Limits)</h3>
+<div class="outline-text-3" id="text-org426aec0">
+<p>
+<i>recursion_limit</i> — 设置某些编译时操作的最大递归限制。<br />
+<i>type_length_limit</i> — 设置多态类型(polymorphic type)单态化过程中构造具体类型时所做的最大类型替换次数。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org361ba64" class="outline-3">
+<h3 id="org361ba64">运行时(Runtime)</h3>
+<div class="outline-text-3" id="text-org361ba64">
+<p>
+<i>panic_handler</i> — 设置处理 panic 的函数。<br />
+<i>global_allocator</i> — 设置全局内存分配器。<br />
+<i>windows_subsystem</i> — 指定要链接的 windows 子系统。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgab03d56" class="outline-3">
+<h3 id="orgab03d56">特性(Features)</h3>
+<div class="outline-text-3" id="text-orgab03d56">
+<p>
+<i>feature</i> — 用于启用非稳定的或实验性的编译器特性。参见 The Unstable Book 了解在 rustc 中实现的特性。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgad98cc2" class="outline-3">
+<h3 id="orgad98cc2">类型系统(Type System)</h3>
+<div class="outline-text-3" id="text-orgad98cc2">
+<p>
+<i>non_exhaustive</i> — 表明一个类型将来会添加更多的字段/变体。<br />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2024-10-29 二 00:00</p>
+<p class="author">Author: FAN</p>
+<p class="date">Created: 2024-12-19 四 00:07</p>
+</div>
+</body>
+</html>

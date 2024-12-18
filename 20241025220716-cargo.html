@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+<!-- 2024-12-19 四 00:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cargo</title>
+<meta name="author" content="FAN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet"
+                    href="mystyle.css"
+                    type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Cargo</h1>
+<div id="outline-container-orgaeac95f" class="outline-2">
+<h2 id="orgaeac95f">Cargo.toml</h2>
+<div class="outline-text-2" id="text-orgaeac95f">
+<div class="org-src-container">
+<pre class="src src-toml">[<span style="color: #35CDAF;">profile.release</span>]
+<span style="color: #85DDFF;">panic</span> = <span style="color: #DB8E73;">'abort'</span> <span style="color: #579C4C;">#</span><span style="color: #579C4C;">&#22312;&#36935;&#21040;panic&#30452;&#25509;&#32456;&#27490;,&#19981;&#20250;&#20986;&#26632;&#20449;&#24687;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org485d235" class="outline-2">
+<h2 id="org485d235">test</h2>
+<div class="outline-text-2" id="text-org485d235">
+<ul class="org-ul">
+<li>cargo run 与 cargo test 将代码编译成二进制,然后运行,然后被删除<br /></li>
+</ul>
+</div>
+<div id="outline-container-orgd6939a4" class="outline-3">
+<h3 id="orgd6939a4">运行 <i>cargo test</i> 会执行三个部分</h3>
+<div class="outline-text-3" id="text-orgd6939a4">
+<p>
+单元测试 集成测试 文档测试<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org83a3bf4" class="outline-3">
+<h3 id="org83a3bf4">我们可以使用 cargo test &#x2013;help 来查看第一种参数的帮助列表，还可以通过 cargo test &#x2013; &#x2013;help 来查看第二种的帮助列表。</h3>
+<div class="outline-text-3" id="text-org83a3bf4">
+<ul class="org-ul">
+<li>第一种是提供给 cargo test 命令本身的，这些参数在 &#x2013; 之前指定<br /></li>
+<li>第二种是提供给编译后的可执行文件的，在 &#x2013; 之后指定<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd17e8e0" class="outline-3">
+<h3 id="orgd17e8e0">测试用例顺序执行</h3>
+<div class="outline-text-3" id="text-orgd17e8e0">
+<p>
+<code>$ cargo test -- --test-threads=1</code><br />
+</p>
+</div>
+</div>
+<div id="outline-container-org3f356f3" class="outline-3">
+<h3 id="org3f356f3">显示测试中的 println!</h3>
+<div class="outline-text-3" id="text-org3f356f3">
+<p>
+<code>$ cargo test -- --show-output</code><br />
+</p>
+</div>
+</div>
+<div id="outline-container-org57ab900" class="outline-3">
+<h3 id="org57ab900">运行指定测试函数</h3>
+<div class="outline-text-3" id="text-org57ab900">
+<p>
+<code>$ cargo test function_name</code><br />
+</p>
+<ul class="org-ul">
+<li>只需要将指定的测试函数名作为参数<br /></li>
+<li>function_name 可以过滤,例如同时执行 function_name1 和 function_name2<br />
+<ul class="org-ul">
+<li>还可以通过模块名称来过滤 <code>cargo test mod_name</code> 即可执行模块下的所有测试函数<br /></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2244bd1" class="outline-3">
+<h3 id="org2244bd1">运行被忽略的测试函数</h3>
+<div class="outline-text-3" id="text-org2244bd1">
+<p>
+<code>$ cargo test -- --ignored</code><br />
+</p>
+</div>
+</div>
+<div id="outline-container-org19573c9" class="outline-3">
+<h3 id="org19573c9">组合过滤</h3>
+<div class="outline-text-3" id="text-org19573c9">
+<p>
+<code>$ cargo test tests -- --ignored</code><br />
+</p>
+</div>
+</div>
+<div id="outline-container-org4424aa1" class="outline-3">
+<h3 id="org4424aa1">生成测试可执行文件</h3>
+<div class="outline-text-3" id="text-org4424aa1">
+<blockquote>
+<p>
+$ cargo test<br />
+ Finished test [unoptimized + debuginfo] target(s) in 0.00s<br />
+     Running unittests (target/debug/deps/study_cargo-0d693f72a0f49166)<br />
+</p>
+</blockquote>
+<p>
+生成的可执行文件就是 <b>target/debug/deps/study_cargo-0d693f72a0f49166</b><br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2d7049f" class="outline-2">
+<h2 id="org2d7049f">版本号</h2>
+<div class="outline-text-2" id="text-org2d7049f">
+</div>
+<div id="outline-container-org1c23c65" class="outline-3">
+<h3 id="org1c23c65">^ 指定版本范围</h3>
+<div class="outline-text-3" id="text-org1c23c65">
+<blockquote>
+<p>
+^1.2.3  :=  &gt;=1.2.3, &lt;2.0.0<br />
+^1.2    :=  &gt;=1.2.0, &lt;2.0.0<br />
+^1      :=  &gt;=1.0.0, &lt;2.0.0<br />
+^0.2.3  :=  &gt;=0.2.3, &lt;0.3.0<br />
+^0.2    :=  &gt;=0.2.0, &lt;0.3.0<br />
+^0.0.3  :=  &gt;=0.0.3, &lt;0.0.4<br />
+^0.0    :=  &gt;=0.0.0, &lt;0.1.0<br />
+^0      :=  &gt;=0.0.0, &lt;1.0.0<br />
+</p>
+</blockquote>
+<p>
+<b>^</b> 可以指定一个版本号范围，然后会使用该范围内的最大版本号来引用对应的包。<br />
+可以实现自动升级<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org941ab58" class="outline-3">
+<h3 id="org941ab58">~ 指定最小化版本</h3>
+<div class="outline-text-3" id="text-org941ab58">
+<blockquote>
+<p>
+~1.2.3  := &gt;=1.2.3, &lt;1.3.0<br />
+~1.2    := &gt;=1.2.0, &lt;1.3.0<br />
+~1      := &gt;=1.0.0, &lt;2.0.0<br />
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org14b8188" class="outline-3">
+<h3 id="org14b8188">* 通配符</h3>
+<div class="outline-text-3" id="text-org14b8188">
+<blockquote>
+<p>
+<code>*</code>     := &gt;=0.0.0<br />
+1.*   := &gt;=1.0.0, &lt;2.0.0<br />
+1.2.* := &gt;=1.2.0, &lt;1.3.0<br />
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org48a8c17" class="outline-3">
+<h3 id="org48a8c17">比较符</h3>
+<div class="outline-text-3" id="text-org48a8c17">
+<blockquote>
+<p>
+&gt;= 1.2.0<br />
+&gt; 1<br />
+&lt; 2<br />
+= 1.2.3<br />
+</p>
+</blockquote>
+<p>
+进行组合，并通过逗号分隔<br />
+</p>
+<blockquote>
+<p>
+&gt;= 1.2, &lt; 1.5<br />
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org3805660" class="outline-2">
+<h2 id="org3805660">features</h2>
+<div class="outline-text-2" id="text-org3805660">
+<p>
+例子<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-toml"><span style="color: #85DDFF;">serde</span> = { version = <span style="color: #DB8E73;">"1.0"</span>, features = [<span style="color: #DB8E73;">"derive"</span>] }
+</pre>
+</div>
+<p>
+<i>features</i> 特性可以有以下优点<br />
+</p>
+<ol class="org-ol">
+<li>控制依赖大小,避免不必要的依赖<br /></li>
+<li>隔离安全性与稳定性,分离实验性功能<br /></li>
+<li>减少编译时间<br /></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org976a069" class="outline-2">
+<h2 id="org976a069">build.rs</h2>
+<div class="outline-text-2" id="text-org976a069">
+<p>
+在项目被构建(build)之前,Cargo 会优先编译该文件,并执行<br />
+</p>
+<ul class="org-ul">
+<li>作用:<br />
+<ul class="org-ul">
+<li>编译第三方的非 Rust 代码<br /></li>
+<li>生成代码.依赖检查.设置环境变量<br /></li>
+<li>根据系统环境配置构建过程<br /></li>
+</ul></li>
+<li>构建脚本不应该修改该目录之外的任何文件<br /></li>
+<li>构建脚本可以通过 <i>println!</i> 输出内容跟 Cargo 通信<br /></li>
+</ul>
+</div>
+<div id="outline-container-org7006591" class="outline-3">
+<h3 id="org7006591">Cargo 能识别的通信指令</h3>
+<div class="outline-text-3" id="text-org7006591">
+<ul class="org-ul">
+<li><i>cargo:rerun-if-changed=PATH</i> — 当指定路径的文件发生变化时，Cargo 会重新运行脚本<br /></li>
+<li><i>cargo:rerun-if-env-changed=VAR</i> — 当指定的环境变量发生变化时，Cargo 会重新运行脚本<br /></li>
+<li><i>cargo:rustc-link-arg=FLAG</i> – 将自定义的 flags 传给 linker，用于后续的基准性能测试 benchmark、 可执行文件 binary,、cdylib 包、示例和测试<br /></li>
+<li><i>cargo:rustc-link-arg-bin=BIN=FLAG</i> – 自定义的 flags 传给 linker，用于可执行文件 BIN<br /></li>
+<li><i>cargo:rustc-link-arg-bins=FLAG</i> – 自定义的 flags 传给 linker，用于可执行文件<br /></li>
+<li><i>cargo:rustc-link-arg-tests=FLAG</i> – 自定义的 flags 传给 linker，用于测试<br /></li>
+<li><i>cargo:rustc-link-arg-examples=FLAG</i> – 自定义的 flags 传给 linker，用于示例<br /></li>
+<li><i>cargo:rustc-link-arg-benches=FLAG</i> – 自定义的 flags 传给 linker，用于基准性能测试 benchmark<br /></li>
+<li><i>cargo:rustc-cdylib-link-arg=FLAG</i> — 自定义的 flags 传给 linker，用于 cdylib 包<br /></li>
+<li><i>cargo:rustc-link-lib=[KIND=]NAME</i> — 告知 Cargo 通过 -l 去链接一个指定的库，往往用于链接一个本地库，通过 FFI<br /></li>
+<li><i>cargo:rustc-link-search=[KIND=]PATH</i> — 告知 Cargo 通过 -L 将一个目录添加到依赖库的搜索路径中<br /></li>
+<li><i>cargo:rustc-flags=FLAGS</i> — 将特定的 flags 传给编译器<br /></li>
+<li><i>cargo:rustc-cfg=KEY[="VALUE"]</i> — 开启编译时 cfg 设置<br /></li>
+<li><i>cargo:rustc-env=VAR=VALUE</i> — 设置一个环境变量<br /></li>
+<li><i>cargo:warning=MESSAGE</i> — 在终端打印一条 warning 信息<br /></li>
+<li><i>cargo:KEY=VALUE</i> — links 脚本使用的元数据<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfbd2909" class="outline-3">
+<h3 id="orgfbd2909">构建脚本需要加入依赖</h3>
+<div class="outline-text-3" id="text-orgfbd2909">
+<div class="org-src-container">
+<pre class="src src-toml">[<span style="color: #35CDAF;">build-dependencies</span>]
+<span style="color: #85DDFF;">cc</span> = <span style="color: #DB8E73;">"1.0.46"</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org73f91de" class="outline-2">
+<h2 id="org73f91de">just</h2>
+<div class="outline-text-2" id="text-org73f91de">
+<p>
+用于简化构建与开发过程的工具和文件<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org6e3edfb" class="outline-2">
+<h2 id="org6e3edfb">cross</h2>
+<div class="outline-text-2" id="text-org6e3edfb">
+<p>
+cross 是 rust 跨平台编译工具<br />
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2024-10-25 五 00:00</p>
+<p class="author">Author: FAN</p>
+<p class="date">Created: 2024-12-19 四 00:07</p>
+</div>
+</body>
+</html>

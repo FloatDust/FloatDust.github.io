@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+<!-- 2024-12-19 四 00:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>所有权</title>
+<meta name="author" content="FAN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet"
+                    href="mystyle.css"
+                    type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">所有权</h1>
+<div id="outline-container-orgd2aa7a9" class="outline-2">
+<h2 id="orgd2aa7a9">基础</h2>
+<div class="outline-text-2" id="text-orgd2aa7a9">
+</div>
+<div id="outline-container-orgd00bdbc" class="outline-3">
+<h3 id="orgd00bdbc">堆 <i>Stack</i> &amp; 栈 <i>Heap</i></h3>
+<div class="outline-text-3" id="text-orgd00bdbc">
+</div>
+<div id="outline-container-orgcdb5056" class="outline-4">
+<h4 id="orgcdb5056">堆 杂乱无序</h4>
+<div class="outline-text-4" id="text-orgcdb5056">
+<ul class="org-ul">
+<li>大小未知,可能变化,速度慢<br /></li>
+<li>堆内存是从低位地址向上增长<br /></li>
+<li>堆内存大小只受物理内存限制<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org22886fd" class="outline-4">
+<h4 id="org22886fd">栈 像瓶子 <b>后进先出</b></h4>
+<div class="outline-text-4" id="text-org22886fd">
+<ul class="org-ul">
+<li>所有数据都必须占用固定大小的内存,方便分割内存<br /></li>
+<li>调用函数时,实参被压入栈中<br /></li>
+<li>栈内存从高位地址向下增长<br /></li>
+<li>Rust 中 main 线程的栈大小是 8mb,普通是 2mb<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbfed280" class="outline-4">
+<h4 id="orgbfed280">变量再堆栈的分配</h4>
+<div class="outline-text-4" id="text-orgbfed280">
+<p>
+变量再堆栈的分配位置主要取决于其类型和大小<br />
+</p>
+<ul class="org-ul">
+<li>基本数据类型都是存在栈上,还有较小的复合类型(如元组.数组.切片等)<br /></li>
+<li>动态大小的数据类型存放再堆上,如 String,Vec,HashMap,智能指针等<br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd5d805a" class="outline-3">
+<h3 id="orgd5d805a">原则</h3>
+<div class="outline-text-3" id="text-orgd5d805a">
+<ol class="org-ol">
+<li><b>rust 中每个值都只能被一个变量所拥有</b><br />
+<ul class="org-ul">
+<li>否则会造成<a href="#orge79cf1f">二次释放</a><br /></li>
+<li><del>所以才有<a href="20241029223200-模式匹配.html#ID-7cff9da1-fd6b-4094-9630-beb7c60733de">变量遮蔽</a></del><br /></li>
+</ul></li>
+<li><b>当所有者离开作用域时,这个值被丢弃</b><br />
+<ul class="org-ul">
+<li>自动调用 <i>drop</i> 函数清理堆内存,解决<br /></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org11a2ade" class="outline-3">
+<h3 id="org11a2ade">问题</h3>
+<div class="outline-text-3" id="text-org11a2ade">
+</div>
+<div id="outline-container-orgad55ab0" class="outline-4">
+<h4 id="orgad55ab0">悬垂引用</h4>
+<div class="outline-text-4" id="text-orgad55ab0">
+<ul class="org-ul">
+<li>返回值的类型是地址类型的时候就要注意了,可能会引起悬垂引用<br /></li>
+<li>引用的对象比它的引用者存在的时间更短<br />
+即返回地址时,地址上的值被 rust 的 GC 销毁了或者更改了,反正不再是原来的值了.<br /></li>
+</ul>
+</div>
+<ul class="org-ul">
+<li><a id="org56ab7ad"></a>第一个例子<br />
+<div class="outline-text-5" id="text-org56ab7ad">
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #35CDAF;">int</span>* <span style="color: #D9DAA2;">foo</span>() {
+    <span style="color: #35CDAF;">int</span> <span style="color: #85DDFF;">a</span>;          <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#21464;&#37327;a&#30340;&#20316;&#29992;&#22495;&#24320;&#22987;</span>
+    a = <span style="color: #B5CEA8; font-weight: bold;">100</span>;
+    <span style="color: #35CDAF;">char</span> *<span style="color: #85DDFF;">c</span> = <span style="color: #DB8E73;">"xyz"</span>;   <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#21464;&#37327;c&#30340;&#20316;&#29992;&#22495;&#24320;&#22987;</span>
+    <span style="color: #339CDB;">return</span> &amp;a;
+}                   <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#21464;&#37327;a&#21644;c&#30340;&#20316;&#29992;&#22495;&#32467;&#26463;</span>
+</pre>
+</div>
+<p>
+返回了 a 地址,但 a 地址所在的值已经被销毁了.此时 a 已经无法被外部调用<br />
+</p>
+</div>
+</li>
+<li><a id="org821e252"></a>第二个例子<br />
+<div class="outline-text-5" id="text-org821e252">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">reference_to_nothing</span> = dangle<span style="color: #DB8E73;">()</span>;
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">dangle</span><span style="color: #C586C0;">()</span> -&gt; <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">String</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #DB8E73;">)</span>;
+    <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>s
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+返回 s 的地址,但 s 已经销毁了<br />
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-orge79cf1f" class="outline-4">
+<h4 id="orge79cf1f">二次释放</h4>
+<div class="outline-text-4" id="text-orge79cf1f">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s1</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #C586C0;">)</span>;
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s2</span> = s1;
+</pre>
+</div>
+<p>
+当 s1 和 s2 离开作用域，它们都会尝试释放相同的内存。这是一个叫做 二次释放（double free）的错误<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9b24a0d" class="outline-3">
+<h3 id="org9b24a0d">解决</h3>
+<div class="outline-text-3" id="text-org9b24a0d">
+<ul class="org-ul">
+<li><b>单一所有权</b> ： Rust 严格保证每个值在任意时刻只有一个所有者，从而避免了二次释放问题。<br /></li>
+<li><b>所有权转移</b> ： 当一个变量被赋值给另一个变量时，所有权会从原变量转移到新变量，原变量将不再有效。<br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeed7de7" class="outline-2">
+<h2 id="orgeed7de7">转移所有权(移动)</h2>
+<div class="outline-text-2" id="text-orgeed7de7">
+<ul class="org-ul">
+<li><p>
+<a href="20241020182645-数据类型.html#ID-40e7f542-a75e-4096-88ec-2c0e42659790">标量类型</a>都是通过自动拷贝来复制的, <a href="20241020182645-数据类型.html#ID-109cddf5-890d-4b84-bd1d-468d92c42c7f">复杂类型</a>才会发生转移<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">x</span> = <span style="color: #B5CEA8; font-weight: bold;">5</span>;
+  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">y</span> = x;
+</pre>
+</div></li>
+<li><p>
+<a href="20241020182645-数据类型.html#ID-109cddf5-890d-4b84-bd1d-468d92c42c7f">复杂类型</a>会导致<a href="#orge79cf1f">二次释放</a><br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s1</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #C586C0;">)</span>;
+  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s2</span> = s1;
+  <span style="color: #C586C0;">println!</span><span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">, world!"</span>, s1<span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+<ul class="org-ul">
+<li><i>s1</i> 被 <b>移动</b> 到了 <i>s2</i><br /></li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orge403bec" class="outline-3">
+<h3 id="orge403bec">克隆</h3>
+<div class="outline-text-3" id="text-orge403bec">
+</div>
+<div id="outline-container-orgc7f9360" class="outline-4">
+<h4 id="orgc7f9360">浅拷贝</h4>
+<div class="outline-text-4" id="text-orgc7f9360">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">x</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">str</span> = <span style="color: #DB8E73;">"hello, world"</span>;
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">y</span> = x;
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">,</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>,x,y<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+因为 x 只是获得了值的地址,所以进行了浅克隆,x 和 y 都获得了值的引用<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgc8bc121" class="outline-4">
+<h4 id="orgc8bc121">深拷贝</h4>
+<div class="outline-text-4" id="text-orgc8bc121">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s1</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #C586C0;">)</span>;
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s2</span> = s1.clone<span style="color: #C586C0;">()</span>;
+
+<span style="color: #C586C0;">println!</span><span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"s1 = </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">, s2 = </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, s1, s2<span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+<p>
+深克隆只能手动执行<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org2d817d4" class="outline-4">
+<h4 id="org2d817d4"><a href="20241020182109-关键字.html#ID-854a4572-a519-4f20-b823-966b41c51fd9">Copy</a></h4>
+<div class="outline-text-4" id="text-org2d817d4">
+<p>
+利用 Copy 特征来拷贝<br />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org77504d5" class="outline-2">
+<h2 id="org77504d5">函数传值与返回</h2>
+<div class="outline-text-2" id="text-org77504d5">
+</div>
+<div id="outline-container-orgcc826fc" class="outline-3">
+<h3 id="orgcc826fc">函数传值</h3>
+<div class="outline-text-3" id="text-orgcc826fc">
+<ul class="org-ul">
+<li>函数参数的三种传入方式:<a href="#orgeed7de7">转移所有权(移动)</a>、<a href="#orgc41fff8">可变引用</a>、<a href="#org39c4094">不可变引用</a><br /></li>
+</ul>
+
+<ul class="org-ul">
+<li><a href="20241020182645-数据类型.html#ID-109cddf5-890d-4b84-bd1d-468d92c42c7f">复杂类型</a><br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #C586C0;">)</span>;  <span style="color: #579C4C;">// </span><span style="color: #579C4C;">s &#36827;&#20837;&#20316;&#29992;&#22495;</span>
+takes_ownership<span style="color: #C586C0;">(</span>s<span style="color: #C586C0;">)</span>; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">s &#19981;&#20877;&#26377;&#25928;</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><a href="20241020182645-数据类型.html#ID-40e7f542-a75e-4096-88ec-2c0e42659790">标量类型</a><br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">x</span> = <span style="color: #B5CEA8; font-weight: bold;">5</span>;                      <span style="color: #579C4C;">// </span><span style="color: #579C4C;">x &#36827;&#20837;&#20316;&#29992;&#22495;</span>
+makes_copy<span style="color: #C586C0;">(</span>x<span style="color: #C586C0;">)</span>; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">x &#21518;&#32493;&#36824;&#21487;&#20197;&#34987;&#20351;&#29992;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3296a83" class="outline-3">
+<h3 id="org3296a83">返回值</h3>
+<div class="outline-text-3" id="text-org3296a83">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s1</span> = gives_ownership<span style="color: #DB8E73;">()</span>;         <span style="color: #579C4C;">// </span><span style="color: #579C4C;">gives_ownership &#23558;&#36820;&#22238;&#20540;</span>
+                                        <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#31227;&#32473; s1</span>
+
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s2</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #DB8E73;">)</span>;     <span style="color: #579C4C;">// </span><span style="color: #579C4C;">s2 &#36827;&#20837;&#20316;&#29992;&#22495;</span>
+
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s3</span> = takes_and_gives_back<span style="color: #DB8E73;">(</span>s2<span style="color: #DB8E73;">)</span>;  <span style="color: #579C4C;">// </span><span style="color: #579C4C;">s2 &#34987;&#31227;&#21160;&#21040;</span>
+                                        <span style="color: #579C4C;">// </span><span style="color: #579C4C;">takes_and_gives_back &#20013;,</span>
+                                        <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#23427;&#20063;&#23558;&#36820;&#22238;&#20540;&#31227;&#32473; s3</span>
+<span style="color: #C586C0;">}</span> <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#36825;&#37324;, s3 &#31227;&#20986;&#20316;&#29992;&#22495;&#24182;&#34987;&#20002;&#24323;&#12290;s2 &#20063;&#31227;&#20986;&#20316;&#29992;&#22495;&#65292;&#20294;&#24050;&#34987;&#31227;&#36208;&#65292;</span>
+  <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#25152;&#20197;&#20160;&#20040;&#20063;&#19981;&#20250;&#21457;&#29983;&#12290;s1 &#31227;&#20986;&#20316;&#29992;&#22495;&#24182;&#34987;&#20002;&#24323;</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">gives_ownership</span><span style="color: #C586C0;">()</span> -&gt; <span style="color: #35CDAF;">String</span> <span style="color: #C586C0;">{</span>             <span style="color: #579C4C;">// </span><span style="color: #579C4C;">gives_ownership &#23558;&#36820;&#22238;&#20540;&#31227;&#21160;&#32473;</span>
+                                             <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#35843;&#29992;&#23427;&#30340;&#20989;&#25968;</span>
+
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">some_string</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #DB8E73;">)</span>; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">some_string &#36827;&#20837;&#20316;&#29992;&#22495;.</span>
+
+    some_string                              <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#36820;&#22238; some_string &#24182;&#31227;&#20986;&#32473;&#35843;&#29992;&#30340;&#20989;&#25968;</span>
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #579C4C;">// </span><span style="color: #579C4C;">takes_and_gives_back &#23558;&#20256;&#20837;&#23383;&#31526;&#20018;&#24182;&#36820;&#22238;&#35813;&#20540;</span>
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">takes_and_gives_back</span><span style="color: #C586C0;">(</span><span style="color: #85DDFF;">a_string</span>: <span style="color: #35CDAF;">String</span><span style="color: #C586C0;">)</span> -&gt; <span style="color: #35CDAF;">String</span> <span style="color: #C586C0;">{</span> <span style="color: #579C4C;">// </span><span style="color: #579C4C;">a_string &#36827;&#20837;&#20316;&#29992;&#22495;</span>
+
+    a_string  <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#36820;&#22238; a_string &#24182;&#31227;&#20986;&#32473;&#35843;&#29992;&#30340;&#20989;&#25968;</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb9eb976" class="outline-2">
+<h2 id="orgb9eb976">引用与借用</h2>
+<div class="outline-text-2" id="text-orgb9eb976">
+<p>
+借用:获取变量的引用 <code>= &amp;var</code><br />
+</p>
+</div>
+<div id="outline-container-org9c5fc10" class="outline-3">
+<h3 id="org9c5fc10"><a href="20241020182109-关键字.html#ID-83be5a5c-04a9-42cc-8cec-b03e50b94a62">&amp; 引用</a> 与 <a href="20241020182109-关键字.html#ID-2586ee70-0f2f-4fcf-a173-5966f8a01138">* 解引用</a></h3>
+<div class="outline-text-3" id="text-org9c5fc10">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">x</span> = <span style="color: #B5CEA8; font-weight: bold;">5</span>;
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">y</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>x;
+
+    <span style="color: #85DDFF; font-weight: bold;">assert_eq!</span><span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">5</span>, x<span style="color: #DB8E73;">)</span>;
+    <span style="color: #85DDFF; font-weight: bold;">assert_eq!</span><span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">5</span>, *y<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org9724623" class="outline-4">
+<h4 id="org9724623">再借用</h4>
+<div class="outline-text-4" id="text-org9724623">
+<p>
+<i>&amp;*</i> 组合使用解引用与引用<br />
+</p>
+<ul class="org-ul">
+<li>破坏借用规则,使用可变引用与不可变引用同时存在<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Point</span><span style="color: #C586C0;">{}</span>
+<span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">Point</span><span style="color: #C586C0;">{</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">move_to</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> <span style="color: #339CDB;">self</span>, <span style="color: #85DDFF;">x</span>:<span style="color: #35CDAF;">i32</span>, <span style="color: #85DDFF;">y</span>: <span style="color: #35CDAF;">i32</span><span style="color: #DB8E73;">){</span>...<span style="color: #DB8E73;">}</span> <span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">(){</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">p</span> = <span style="color: #35CDAF;">Point</span> <span style="color: #DB8E73;">{</span> <span style="color: #85DDFF;">x</span>: <span style="color: #B5CEA8; font-weight: bold;">0</span>, <span style="color: #85DDFF;">y</span>: <span style="color: #B5CEA8; font-weight: bold;">0</span> <span style="color: #DB8E73;">}</span>;
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">r</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> p;
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">reborrow! &#27492;&#26102;&#23545;`r`&#30340;&#20877;&#20511;&#29992;&#19981;&#20250;&#23548;&#33268;&#36319;&#19978;&#38754;&#30340;&#20511;&#29992;&#20914;&#31361;</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">rr</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">Point</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>*r;
+    <span style="color: #579C4C;">//</span><span style="color: #579C4C;">&#20877;&#20511;&#29992;`rr`&#26368;&#21518;&#19968;&#27425;&#20351;&#29992;&#21457;&#29983;&#22312;&#36825;&#37324;&#65292;&#22312;&#23427;&#30340;&#29983;&#21629;&#21608;&#26399;&#20013;&#65292;&#25105;&#20204;&#24182;&#27809;&#26377;&#20351;&#29992;&#21407;&#26469;&#30340;&#20511;&#29992;`r`&#65292;&#22240;&#27492;&#19981;&#20250;&#25253;&#38169;</span>
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{:?}</span><span style="color: #DB8E73;">"</span>, rr<span style="color: #DB8E73;">)</span>;
+
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#20877;&#20511;&#29992;&#32467;&#26463;&#21518;&#65292;&#25165;&#21435;&#20351;&#29992;&#21407;&#26469;&#30340;&#20511;&#29992;`r`</span>
+    r.move_to<span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">10</span>, <span style="color: #B5CEA8; font-weight: bold;">10</span><span style="color: #DB8E73;">)</span>;
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{:?}</span><span style="color: #DB8E73;">"</span>, r<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+不能在再借用的生命周期内使用可变引用<br />
+</p>
+<ul class="org-ul">
+<li>强制类型转换<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">string</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #C586C0;">)</span>;
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">string_slice</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">str</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>*string;  <span style="color: #579C4C;">// </span><span style="color: #579C4C;">Coerce String to str</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>可以将智能指针转换为引用<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">boxed</span> = <span style="color: #35CDAF;">Box</span>::new<span style="color: #C586C0;">(</span><span style="color: #B5CEA8; font-weight: bold;">5</span><span style="color: #C586C0;">)</span>;   <span style="color: #579C4C;">// </span><span style="color: #579C4C;">Box&lt;i32&gt;</span>
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">reference</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>*boxed;   <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&amp;i32 (&#39318;&#20808;&#35299;&#24341;&#29992; Box &#24471;&#21040; T&#65292;&#28982;&#21518;&#21462;&#23427;&#30340;&#24341;&#29992;)</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>可以消除嵌套引用<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">x</span> = <span style="color: #B5CEA8; font-weight: bold;">5</span>;
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">y</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>x;    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&amp;i32</span>
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">z</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;&amp;</span>y;   <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&amp;&amp;i32</span>
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">w</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>*z;   <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&amp;i32 (&#39318;&#20808;&#35299;&#24341;&#29992;&#19968;&#27425;&#65292;&#28982;&#21518;&#21462;&#24341;&#29992;)</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>特征<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">trait</span> <span style="color: #35CDAF;">MyTrait</span> <span style="color: #C586C0;">{}</span>
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">boxed</span>: <span style="color: #35CDAF;">Box</span><span style="color: #C586C0;">&lt;</span><span style="color: #339CDB;">dyn</span> <span style="color: #35CDAF;">MyTrait</span><span style="color: #C586C0;">&gt;</span> = <span style="color: #579C4C;">// </span><span style="color: #579C4C;">...</span>
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">reference</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">dyn</span> <span style="color: #35CDAF;">MyTrait</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>*boxed;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org39c4094" class="outline-3">
+<h3 id="org39c4094">不可变引用</h3>
+<div class="outline-text-3" id="text-org39c4094">
+<p>
+不变性使复杂的功能更容易实现,避免数据直接突变可以让你保持以前版本的数据完好无损，并在以后重用它们<br />
+</p>
+<p>
+:ID:       cd590188-16ba-4121-89d1-342f6e039a6d<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">s1</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #DB8E73;">)</span>;
+
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">len</span> = calculate_length<span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>s1<span style="color: #DB8E73;">)</span>;
+
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"The length of '</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">' is </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">."</span>, s1, len<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">calculate_length</span><span style="color: #C586C0;">(</span><span style="color: #85DDFF;">s</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">String</span><span style="color: #C586C0;">)</span> -&gt; <span style="color: #35CDAF;">usize</span> <span style="color: #C586C0;">{</span>
+    s.len<span style="color: #DB8E73;">()</span>
+<span style="color: #579C4C;">//    </span><span style="color: #579C4C;">s.push_str(", world!") //&#25253;&#38169;</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>函数形参 <i>&amp;String</i><br /></li>
+<li>引用可以保持值的所有权不移动<br /></li>
+<li>引用指向的值,默认不可改变<br /></li>
+<li><b>多个不可变引用可以同时存在</b><br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc41fff8" class="outline-3">
+<h3 id="orgc41fff8">可变引用</h3>
+<div class="outline-text-3" id="text-orgc41fff8">
+<ul class="org-ul">
+<li>加 mut 为 <i>&amp;mut</i><br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">s</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #DB8E73;">)</span>;
+    change<span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> s<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">change</span><span style="color: #C586C0;">(</span><span style="color: #85DDFF;">some_string</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> <span style="color: #35CDAF;">String</span><span style="color: #C586C0;">)</span> <span style="color: #C586C0;">{</span>
+    some_string.push_str<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">", world"</span><span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li><p>
+<b>可变引用同时只能存在一个</b><br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">s</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #C586C0;">)</span>;
+  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">r1</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> s;
+  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">r2</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> s; <span style="color: #579C4C;">//</span><span style="color: #579C4C;">&#25253;&#38169;</span>
+  <span style="color: #C586C0;">println!</span><span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">, </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, r1, r2<span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+<p>
+防止数据竞争<br />
+</p></li>
+<li><p>
+<b>可变与不可变引用不能同时存在</b><br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">s</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #C586C0;">)</span>;
+
+  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">r1</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>s; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#27809;&#38382;&#39064;</span>
+  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">r2</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>s; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#27809;&#38382;&#39064;</span>
+  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">r3</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> s; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#22823;&#38382;&#39064;</span>
+
+  <span style="color: #C586C0;">println!</span><span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">, </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">, and </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, r1, r2, r3<span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+<p>
+不可变引用可不想自己的值被可变引用改变<br />
+</p>
+<ul class="org-ul">
+<li><b>引用的生命周期从借用处开始,一直持续到最后一次使用的地方</b><br />
+重点在于在可变引用发生后不能再使用不可变引用,即不可在 r3 定义后再使用 r1,r2,如果只使用 r3,是可以通过编译的,这个属于编译器优化<br /></li>
+</ul></li>
+<li><p>
+引用作用域的位置是最后一次使用的位置<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+     <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">s</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #DB8E73;">)</span>;
+ 
+     <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">r1</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>s;
+     <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">r2</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>s;
+     <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;"> and </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, r1, r2<span style="color: #DB8E73;">)</span>;
+     <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#26032;&#32534;&#35793;&#22120;&#20013;&#65292;r1,r2&#20316;&#29992;&#22495;&#22312;&#36825;&#37324;&#32467;&#26463;</span>
+
+     <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">r3</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> s;
+      <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, r3<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span> <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#32769;&#32534;&#35793;&#22120;&#20013;&#65292;r1&#12289;r2&#12289;r3&#20316;&#29992;&#22495;&#22312;&#36825;&#37324;&#32467;&#26463;</span>
+  <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#26032;&#32534;&#35793;&#22120;&#20013;&#65292;r3&#20316;&#29992;&#22495;&#22312;&#36825;&#37324;&#32467;&#26463;</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2024-10-31 四 00:00</p>
+<p class="author">Author: FAN</p>
+<p class="date">Created: 2024-12-19 四 00:07</p>
+</div>
+</body>
+</html>

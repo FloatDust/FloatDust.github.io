@@ -1,0 +1,1046 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+<!-- 2024-12-19 四 00:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>数据类型</title>
+<meta name="author" content="FAN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet"
+                    href="mystyle.css"
+                    type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">数据类型</h1>
+<div id="outline-container-org817823e" class="outline-2">
+<h2 id="org817823e">标量类型</h2>
+<div class="outline-text-2" id="text-org817823e">
+</div>
+<div id="outline-container-org9ea087f" class="outline-3">
+<h3 id="org9ea087f">整型</h3>
+<div class="outline-text-3" id="text-org9ea087f">
+<ul class="org-ul">
+<li>rust 中的整型<br /></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">长度</th>
+<th scope="col" class="org-left">有符号</th>
+<th scope="col" class="org-left">无符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">8-bit</td>
+<td class="org-left">i8</td>
+<td class="org-left">u8</td>
+</tr>
+
+<tr>
+<td class="org-left">16-bit</td>
+<td class="org-left">i16</td>
+<td class="org-left">u16</td>
+</tr>
+
+<tr>
+<td class="org-left">32-bit</td>
+<td class="org-left">i32</td>
+<td class="org-left">u32</td>
+</tr>
+
+<tr>
+<td class="org-left">64-bit</td>
+<td class="org-left">i64</td>
+<td class="org-left">u64</td>
+</tr>
+
+<tr>
+<td class="org-left">128-bit</td>
+<td class="org-left">i128</td>
+<td class="org-left">u128</td>
+</tr>
+
+<tr>
+<td class="org-left">arch</td>
+<td class="org-left">isize</td>
+<td class="org-left">usize</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>整型字面值<br /></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">数字字面值</th>
+<th scope="col" class="org-left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Decimal (十进制)</td>
+<td class="org-left">98_222</td>
+</tr>
+
+<tr>
+<td class="org-left">Hex (十六进制)</td>
+<td class="org-left">0xff</td>
+</tr>
+
+<tr>
+<td class="org-left">Octal (八进制)</td>
+<td class="org-left">0o77</td>
+</tr>
+
+<tr>
+<td class="org-left">Binary (二进制)</td>
+<td class="org-left">0b1111_0000</td>
+</tr>
+
+<tr>
+<td class="org-left">Byte (单字节字符)(仅限于 u8)</td>
+<td class="org-left">b'A'</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>数字类型默认是 i32<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5f435c0" class="outline-3">
+<h3 id="org5f435c0">浮点</h3>
+<div class="outline-text-3" id="text-org5f435c0">
+<ul class="org-ul">
+<li>Rust 的浮点数类型是 f32 和 f64，分别占 32 位和 64 位。默认类型是 f64<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbbfa736" class="outline-3">
+<h3 id="orgbbfa736">布尔</h3>
+</div>
+<div id="outline-container-orgce70144" class="outline-3">
+<h3 id="orgce70144">字符</h3>
+<div class="outline-text-3" id="text-orgce70144">
+<ul class="org-ul">
+<li>Rust 的 char 类型的大小为四个字节 (four bytes)，并代表了一个 Unicode 标量值<br /></li>
+<li>在 Rust 中，带变音符号的字母（Accented letters），中文、日文、韩文等字符，emoji（绘文字）以及零长度的空白字符都是有效的 char 值<br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org578c953" class="outline-2">
+<h2 id="org578c953">复合类型</h2>
+<div class="outline-text-2" id="text-org578c953">
+</div>
+<div id="outline-container-org7d52090" class="outline-3">
+<h3 id="org7d52090">元组</h3>
+<div class="outline-text-3" id="text-org7d52090">
+<ul class="org-ul">
+<li><p>
+定义<br />
+元组是一个将多个其他类型的值组合进一个复合类型的主要方式。元组长度固定<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">tup</span>:<span style="color: #C586C0;">(</span><span style="color: #35CDAF;">i32</span>,<span style="color: #35CDAF;">f64</span>,<span style="color: #35CDAF;">u8</span><span style="color: #C586C0;">)</span> = <span style="color: #C586C0;">(</span>-<span style="color: #B5CEA8; font-weight: bold;">500</span>, <span style="color: #B5CEA8; font-weight: bold;">6.4</span>, <span style="color: #B5CEA8; font-weight: bold;">1</span><span style="color: #C586C0;">)</span>;
+  <span style="color: #339CDB;">let</span> <span style="color: #C586C0;">(</span>x, y, z<span style="color: #C586C0;">)</span> = tup;
+  <span style="color: #C586C0;">println!</span><span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"The value of y is: </span><span style="color: #DB8E73; font-style: italic;">{y}</span><span style="color: #DB8E73;">"</span><span style="color: #C586C0;">)</span>;
+</pre>
+</div></li>
+</ul>
+
+<pre class="example">
+The value of y is: 6.4
+</pre>
+
+<ul class="org-ul">
+<li><p>
+访问<br />
+我们也可以使用点号（.）后跟值的索引来直接访问它们。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">x</span>: <span style="color: #C586C0;">(</span><span style="color: #35CDAF;">i32</span>, <span style="color: #35CDAF;">f64</span>, <span style="color: #35CDAF;">u8</span><span style="color: #C586C0;">)</span> = <span style="color: #C586C0;">(</span><span style="color: #B5CEA8; font-weight: bold;">500</span>, <span style="color: #B5CEA8; font-weight: bold;">6.4</span>, <span style="color: #B5CEA8; font-weight: bold;">1</span><span style="color: #C586C0;">)</span>;
+  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">five_hundred</span> = x.<span style="color: #B5CEA8; font-weight: bold;">0</span>;
+  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">six_point_four</span> = x.<span style="color: #B5CEA8; font-weight: bold;">1</span>;
+  <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">one</span> = x.<span style="color: #B5CEA8; font-weight: bold;">2</span>;
+</pre>
+</div></li>
+</ul>
+</div>
+<div id="outline-container-org9400664" class="outline-4">
+<h4 id="org9400664">元组可作为函数的参数和返回值</h4>
+<div class="outline-text-4" id="text-org9400664">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">reverse</span><span style="color: #C586C0;">(</span><span style="color: #85DDFF;">pair</span>: <span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">i32</span>, <span style="color: #35CDAF;">bool</span><span style="color: #DB8E73;">)</span><span style="color: #C586C0;">)</span> -&gt; <span style="color: #C586C0;">(</span><span style="color: #35CDAF;">bool</span>, <span style="color: #35CDAF;">i32</span><span style="color: #C586C0;">)</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#21487;&#20197;&#20351;&#29992; `let` &#25226;&#19968;&#20010;&#20803;&#32452;&#30340;&#25104;&#21592;&#32465;&#23450;&#21040;&#19968;&#20123;&#21464;&#37327;</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #DB8E73;">(</span>integer, boolean<span style="color: #DB8E73;">)</span> = pair;
+
+    <span style="color: #DB8E73;">(</span>boolean, integer<span style="color: #DB8E73;">)</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6095f53" class="outline-4">
+<h4 id="org6095f53">元组与结构体的区别</h4>
+<div class="outline-text-4" id="text-org6095f53">
+<ol class="org-ol">
+<li><b>元组没有变量名</b><br /></li>
+<li>元组简洁,适用于简单的数据组合和临时存储<br /></li>
+<li>元组的可读性差<br /></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org87fc8b8" class="outline-4">
+<h4 id="org87fc8b8">单元元组</h4>
+<div class="outline-text-4" id="text-org87fc8b8">
+<p>
+<code>let unit_tuple: () = ();</code><br />
+不带任何变量的元组有个特殊的名称，叫单元元组(unit tuple)。这种值以及对应的类型都写作 <span class="underline">()</span> ，表示空值或空的返回类型。如果表达式不返回任何其他值，则会隐式返回单元值<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orga4d837a" class="outline-4">
+<h4 id="orga4d837a"><a href="20241029223200-模式匹配.html#ID-191b7918-4bd2-4136-b0df-9d1bdfe82099">匹配元组</a></h4>
+<div class="outline-text-4" id="text-orga4d837a">
+<p>
+利用 match 匹配元组<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb37fadd" class="outline-3">
+<h3 id="orgb37fadd">数组</h3>
+<div class="outline-text-3" id="text-orgb37fadd">
+<ul class="org-ul">
+<li>定义<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">a</span> = <span style="color: #C586C0;">[</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #B5CEA8; font-weight: bold;">2</span>, <span style="color: #B5CEA8; font-weight: bold;">3</span>, <span style="color: #B5CEA8; font-weight: bold;">4</span>, <span style="color: #B5CEA8; font-weight: bold;">5</span><span style="color: #C586C0;">]</span>;
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">b</span>: <span style="color: #C586C0;">[</span><span style="color: #35CDAF;">i32</span>; <span style="color: #B5CEA8; font-weight: bold;">5</span><span style="color: #C586C0;">]</span> = <span style="color: #C586C0;">[</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #B5CEA8; font-weight: bold;">2</span>, <span style="color: #B5CEA8; font-weight: bold;">3</span>, <span style="color: #B5CEA8; font-weight: bold;">4</span>, <span style="color: #B5CEA8; font-weight: bold;">5</span><span style="color: #C586C0;">]</span>;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>数组在栈上速度快,不如 vector 灵活<br /></li>
+<li>数组的大小是可变的，当旧数组的大小不够用时，Rust 会重新分配一块更大的内存空间，然后把旧数组拷贝过来<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2c21209" class="outline-3">
+<h3 id="org2c21209">字符串</h3>
+<div class="outline-text-3" id="text-org2c21209">
+</div>
+<div id="outline-container-org7d08ad3" class="outline-4">
+<h4 id="org7d08ad3">字符串切片 (<i>&amp;str</i>)</h4>
+<div class="outline-text-4" id="text-org7d08ad3">
+<p>
+<code>let s = "hello"</code><br />
+</p>
+<ul class="org-ul">
+<li>字面值 <i>s</i> 没有值 <i>"hello"</i> 的所有权,只有引用<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0c9de04" class="outline-4">
+<h4 id="org0c9de04">字符串动态(<i>String</i>)</h4>
+<div class="outline-text-4" id="text-org0c9de04">
+<ul class="org-ul">
+<li>String 的底层是 <i>[u8]</i> 数组<br /></li>
+</ul>
+</div>
+<ul class="org-ul">
+<li><a id="orgd4745a0"></a>创建<br />
+<div class="outline-text-5" id="text-orgd4745a0">
+<ol class="org-ol">
+<li><p>
+from 方法<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">s</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #C586C0;">)</span>;
+</pre>
+</div></li>
+<li><p>
+new 方法<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">s</span> = <span style="color: #35CDAF;">String</span>::new<span style="color: #C586C0;">()</span>;
+  s.push_str<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"hello"</span><span style="color: #C586C0;">)</span>;
+</pre>
+</div></li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org32fdeac" class="outline-3">
+<h3 id="org32fdeac">结构体</h3>
+<div class="outline-text-3" id="text-org32fdeac">
+</div>
+<div id="outline-container-orgfdf8ee6" class="outline-4">
+<h4 id="orgfdf8ee6">定义</h4>
+<div class="outline-text-4" id="text-orgfdf8ee6">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">User</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #85DDFF;">active</span>: <span style="color: #35CDAF;">bool</span>,
+    <span style="color: #85DDFF;">username</span>: <span style="color: #35CDAF;">String</span>,
+    <span style="color: #85DDFF;">email</span>: <span style="color: #35CDAF;">String</span>,
+    <span style="color: #85DDFF;">sign_in_count</span>: <span style="color: #35CDAF;">u64</span>,
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf19762b" class="outline-4">
+<h4 id="orgf19762b">实例</h4>
+<div class="outline-text-4" id="text-orgf19762b">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">user1</span> = <span style="color: #35CDAF;">User</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #85DDFF;">email</span>: <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"someone@example.com"</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #85DDFF;">username</span>: <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"someusername123"</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #85DDFF;">active</span>: <span style="color: #339CDB;">true</span>,
+    <span style="color: #85DDFF;">sign_in_count</span>: <span style="color: #B5CEA8; font-weight: bold;">1</span>,
+<span style="color: #C586C0;">}</span>;
+</pre>
+</div>
+<ul class="org-ul">
+<li>初始化时,每个字段都必须初始化<br /></li>
+<li>顺序无所谓<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org44b20fe" class="outline-4">
+<h4 id="org44b20fe">访问</h4>
+<div class="outline-text-4" id="text-org44b20fe">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">user1</span> = <span style="color: #35CDAF;">User</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #85DDFF;">email</span>: <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"someone@example.com"</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #85DDFF;">username</span>: <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"someusername123"</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #85DDFF;">active</span>: <span style="color: #339CDB;">true</span>,
+    <span style="color: #85DDFF;">sign_in_count</span>: <span style="color: #B5CEA8; font-weight: bold;">1</span>,
+<span style="color: #C586C0;">}</span>;
+
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">user1</span>.email = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"anotheremail@example.com"</span><span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org90aa33f" class="outline-4">
+<h4 id="org90aa33f">更新</h4>
+<div class="outline-text-4" id="text-org90aa33f">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">user2</span> = <span style="color: #35CDAF;">User</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #85DDFF;">active</span>: user1.active,
+    <span style="color: #85DDFF;">username</span>: user1.username,
+    <span style="color: #85DDFF;">email</span>: <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"another@example.com"</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #85DDFF;">sign_in_count</span>: user1.sign_in_count,
+<span style="color: #C586C0;">}</span>;
+
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">user2</span> = <span style="color: #35CDAF;">User</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #85DDFF;">email</span>: <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"another@example.com"</span><span style="color: #DB8E73;">)</span>,
+    ..user1
+<span style="color: #C586C0;">}</span>;
+</pre>
+</div>
+<ul class="org-ul">
+<li>利用 user1 更新 user2, <i>..user1</i> 必须在结构体尾部使用<br /></li>
+<li>同时上面代码 user1.username 的 <a href="20241031140258-所有权.html#ID-e83edcf1-3608-484e-81d3-704ef7cf7673">所有权被移动</a> 到 user2 中,user1 无法再被使用.<br /></li>
+</ul>
+<p>
+但 user1 其他字段还可以使用<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgdc5e580" class="outline-4">
+<h4 id="orgdc5e580">缩写</h4>
+<div class="outline-text-4" id="text-orgdc5e580">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">build_user</span><span style="color: #C586C0;">(</span><span style="color: #85DDFF;">email</span>: <span style="color: #35CDAF;">String</span>, <span style="color: #85DDFF;">username</span>: <span style="color: #35CDAF;">String</span><span style="color: #C586C0;">)</span> ***&gt; <span style="color: #35CDAF;">User</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">User</span> <span style="color: #DB8E73;">{</span>
+        email, <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#30456;&#24403;&#20110;email:email,</span>
+        username, <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#30456;&#24403;&#20110; username: username,</span>
+        <span style="color: #85DDFF;">active</span>: <span style="color: #339CDB;">true</span>,
+        <span style="color: #85DDFF;">sign_in_count</span>: <span style="color: #B5CEA8; font-weight: bold;">1</span>,
+    <span style="color: #DB8E73;">}</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org29115bc" class="outline-4">
+<h4 id="org29115bc">元组结构体</h4>
+<div class="outline-text-4" id="text-org29115bc">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Color</span><span style="color: #C586C0;">(</span><span style="color: #35CDAF;">i32</span>, <span style="color: #35CDAF;">i32</span>, <span style="color: #35CDAF;">i32</span><span style="color: #C586C0;">)</span>;
+<span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Point</span><span style="color: #C586C0;">(</span><span style="color: #35CDAF;">i32</span>, <span style="color: #35CDAF;">i32</span>, <span style="color: #35CDAF;">i32</span><span style="color: #C586C0;">)</span>;
+
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">black</span> = <span style="color: #35CDAF;">Color</span><span style="color: #C586C0;">(</span><span style="color: #B5CEA8; font-weight: bold;">0</span>, <span style="color: #B5CEA8; font-weight: bold;">0</span>, <span style="color: #B5CEA8; font-weight: bold;">0</span><span style="color: #C586C0;">)</span>;
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">origin</span> = <span style="color: #35CDAF;">Point</span><span style="color: #C586C0;">(</span><span style="color: #B5CEA8; font-weight: bold;">0</span>, <span style="color: #B5CEA8; font-weight: bold;">0</span>, <span style="color: #B5CEA8; font-weight: bold;">0</span><span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+<ul class="org-ul">
+<li>结构体字段没有名称<br /></li>
+<li>在你希望有一个整体名称，但是又不关心里面字段的名称时将非常有用.e.g.:点由 xyz 组成,颜色由三原色组成<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9bba933" class="outline-4">
+<h4 id="org9bba933">单元结构体</h4>
+<div class="outline-text-4" id="text-org9bba933">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">AlwaysEqual</span>;
+
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">subject</span> = <span style="color: #35CDAF;">AlwaysEqual</span>;
+<span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#25105;&#20204;&#19981;&#20851;&#24515; AlwaysEqual &#30340;&#23383;&#27573;&#25968;&#25454;&#65292;&#21482;&#20851;&#24515;&#23427;&#30340;&#34892;&#20026;&#65292;&#22240;&#27492;&#23558;&#23427;&#22768;&#26126;&#20026;&#21333;&#20803;&#32467;&#26500;&#20307;&#65292;&#28982;&#21518;&#20877;&#20026;&#23427;&#23454;&#29616;&#26576;&#20010;&#29305;&#24449;</span>
+<span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">SomeTrait</span> <span style="color: #339CDB;">for</span> <span style="color: #35CDAF;">AlwaysEqual</span> <span style="color: #C586C0;">{}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>没有字段和属性<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3790290" class="outline-4">
+<h4 id="org3790290">所有权</h4>
+<div class="outline-text-4" id="text-org3790290">
+<ul class="org-ul">
+<li>如果你想在结构体中使用一个引用，就必须加上生命周期<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">User</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #85DDFF;">username</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">str</span>, <span style="color: #579C4C;">//</span><span style="color: #579C4C;">&#25253;&#38169;,&#38656;&#35201;&#19968;&#20010;&#29983;&#21629;&#21608;&#26399;&#26631;&#35782;&#31526; struct User&lt;ser&lt;'a&gt; {</span>
+                    <span style="color: #579C4C;">//                               </span><span style="color: #579C4C;">username: &amp;'a str,</span>
+    <span style="color: #85DDFF;">email</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">str</span>,
+    <span style="color: #85DDFF;">sign_in_count</span>: <span style="color: #35CDAF;">u64</span>,
+    <span style="color: #85DDFF;">active</span>: <span style="color: #35CDAF;">bool</span>,
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">user1</span> = <span style="color: #35CDAF;">User</span> <span style="color: #DB8E73;">{</span>
+        <span style="color: #85DDFF;">email</span>: <span style="color: #DB8E73;">"someone@example.com"</span>,
+        <span style="color: #85DDFF;">username</span>: <span style="color: #DB8E73;">"someusername123"</span>,
+        <span style="color: #85DDFF;">active</span>: <span style="color: #339CDB;">true</span>,
+        <span style="color: #85DDFF;">sign_in_count</span>: <span style="color: #B5CEA8; font-weight: bold;">1</span>,
+    <span style="color: #DB8E73;">}</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdd44a7c" class="outline-3">
+<h3 id="orgdd44a7c">枚举</h3>
+<div class="outline-text-3" id="text-orgdd44a7c">
+</div>
+<div id="outline-container-orgebdca41" class="outline-4">
+<h4 id="orgebdca41">定义</h4>
+<div class="outline-text-4" id="text-orgebdca41">
+<div class="org-src-container">
+<pre class="src src-rust" id="org6c26ce5"><span style="color: #339CDB;">enum</span> <span style="color: #35CDAF;">PokerSuit</span> <span style="color: #C586C0;">{</span>
+  <span style="color: #35CDAF;">Clubs</span>,
+  <span style="color: #35CDAF;">Spades</span>,
+  <span style="color: #35CDAF;">Diamonds</span>,
+  <span style="color: #35CDAF;">Hearts</span>,
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>任何类型的数据都可以放入枚举成员中：例如字符串、数值、结构体甚至另一个枚举。<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">enum</span> <span style="color: #35CDAF;">Message</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">Quit</span>,
+    <span style="color: #35CDAF;">Move</span> <span style="color: #DB8E73;">{</span> <span style="color: #85DDFF;">x</span>: <span style="color: #35CDAF;">i32</span>, <span style="color: #85DDFF;">y</span>: <span style="color: #35CDAF;">i32</span> <span style="color: #DB8E73;">}</span>, <span style="color: #579C4C;">//</span><span style="color: #579C4C;">&#32467;&#26500;&#20307;</span>
+    <span style="color: #35CDAF;">Write</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">String</span><span style="color: #DB8E73;">)</span>, <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#23383;&#31526;&#20018;</span>
+    <span style="color: #35CDAF;">ChangeColor</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">i32</span>, <span style="color: #35CDAF;">i32</span>, <span style="color: #35CDAF;">i32</span><span style="color: #DB8E73;">)</span>, <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#20803;&#32452;</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd740fcb" class="outline-4">
+<h4 id="orgd740fcb">访问</h4>
+<div class="outline-text-4" id="text-orgd740fcb">
+<p>
+<code>let heart = PokerSuit::Hearts;</code><br />
+</p>
+</div>
+</div>
+<div id="outline-container-org7caa7a9" class="outline-4">
+<h4 id="org7caa7a9">枚举带值</h4>
+<div class="outline-text-4" id="text-org7caa7a9">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">enum</span> <span style="color: #35CDAF;">PokerSuit</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">Clubs</span>,
+    <span style="color: #35CDAF;">Spades</span>,
+    <span style="color: #35CDAF;">Diamonds</span>,
+    <span style="color: #35CDAF;">Hearts</span>,
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">PokerCard</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #85DDFF;">suit</span>: <span style="color: #35CDAF;">PokerSuit</span>,
+    <span style="color: #85DDFF;">value</span>: <span style="color: #35CDAF;">u8</span>
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+   <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">c1</span> = <span style="color: #35CDAF;">PokerCard</span> <span style="color: #DB8E73;">{</span>
+       <span style="color: #85DDFF;">suit</span>: <span style="color: #35CDAF;">PokerSuit</span>::<span style="color: #35CDAF;">Clubs</span>,
+       <span style="color: #85DDFF;">value</span>: <span style="color: #B5CEA8; font-weight: bold;">1</span>,
+   <span style="color: #DB8E73;">}</span>;
+   <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">c2</span> = <span style="color: #35CDAF;">PokerCard</span> <span style="color: #DB8E73;">{</span>
+       <span style="color: #85DDFF;">suit</span>: <span style="color: #35CDAF;">PokerSuit</span>::<span style="color: #35CDAF;">Diamonds</span>,
+       <span style="color: #85DDFF;">value</span>: <span style="color: #B5CEA8; font-weight: bold;">12</span>,
+   <span style="color: #DB8E73;">}</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+可以简化为<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">enum</span> <span style="color: #35CDAF;">PokerCard</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">Clubs</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">u8</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #35CDAF;">Spades</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">u8</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #35CDAF;">Diamonds</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">u8</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #35CDAF;">Hearts</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">u8</span><span style="color: #DB8E73;">)</span>,
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+   <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">c1</span> = <span style="color: #35CDAF;">PokerCard</span>::<span style="color: #35CDAF;">Spades</span><span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">5</span><span style="color: #DB8E73;">)</span>;
+   <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">c2</span> = <span style="color: #35CDAF;">PokerCard</span>::<span style="color: #35CDAF;">Diamonds</span><span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">13</span><span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>直接将数据类型关联到枚举成员上<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org928327f" class="outline-4">
+<h4 id="org928327f">Option</h4>
+<div class="outline-text-4" id="text-org928327f">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">enum</span> <span style="color: #35CDAF;">Option</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">Some</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">T</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #35CDAF;">None</span>,
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6dfa586" class="outline-2">
+<h2 id="org6dfa586">集合类型</h2>
+<div class="outline-text-2" id="text-org6dfa586">
+<ul class="org-ul">
+<li>集合类型的值都是存放在堆上的<br /></li>
+</ul>
+</div>
+<div id="outline-container-org212fa92" class="outline-3">
+<h3 id="org212fa92">Vector</h3>
+<div class="outline-text-3" id="text-org212fa92">
+<p>
+动态数组,增加元素时，如果容量不足就会导致 vector 扩容<br />
+目前的策略是重新申请一块 2 倍大小的内存，再将所有元素拷贝到新的内存位置，同时更新指针数据<br />
+</p>
+</div>
+<div id="outline-container-org014ef54" class="outline-4">
+<h4 id="org014ef54">创建与更新</h4>
+<div class="outline-text-4" id="text-org014ef54">
+</div>
+<ul class="org-ul">
+<li><a id="orgfd98f68"></a>Vec::new<br />
+<div class="outline-text-5" id="text-orgfd98f68">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">v</span> = <span style="color: #35CDAF;">Vec</span>::new<span style="color: #C586C0;">()</span>;
+v.push<span style="color: #C586C0;">(</span><span style="color: #B5CEA8; font-weight: bold;">1</span><span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+<ul class="org-ul">
+<li>使用 <i>new</i> 创建,使用 <i>push</i> 更新<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">v</span> = <span style="color: #85DDFF; font-weight: bold;">vec!</span><span style="color: #C586C0;">[</span><span style="color: #B5CEA8; font-weight: bold;">0</span>; <span style="color: #B5CEA8; font-weight: bold;">3</span><span style="color: #C586C0;">]</span>;   <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#40664;&#35748;&#20540;&#20026; 0&#65292;&#21021;&#22987;&#38271;&#24230;&#20026; 3</span>
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">v_from</span> = <span style="color: #35CDAF;">Vec</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">[</span><span style="color: #B5CEA8; font-weight: bold;">0</span>, <span style="color: #B5CEA8; font-weight: bold;">0</span>, <span style="color: #B5CEA8; font-weight: bold;">0</span><span style="color: #DB8E73;">]</span><span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org786d89f"></a>Vec![]<br />
+<div class="outline-text-5" id="text-org786d89f">
+<p>
+利用宏 <i>Vec!</i> 创建<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust" id="org31dbfc4"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">v</span> = <span style="color: #85DDFF; font-weight: bold;">vec!</span><span style="color: #C586C0;">[</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #B5CEA8; font-weight: bold;">2</span>, <span style="color: #B5CEA8; font-weight: bold;">3</span><span style="color: #C586C0;">]</span>;
+</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org1f93b84" class="outline-4">
+<h4 id="org1f93b84">读取</h4>
+<div class="outline-text-4" id="text-org1f93b84">
+</div>
+<ul class="org-ul">
+<li><a id="org61042ae"></a>下标<br />
+<div class="outline-text-5" id="text-org61042ae">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">third</span>: <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">i32</span> = <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>v<span style="color: #C586C0;">[</span><span style="color: #B5CEA8; font-weight: bold;">2</span><span style="color: #C586C0;">]</span>;
+<span style="color: #C586C0;">println!</span><span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"&#31532;&#19977;&#20010;&#20803;&#32032;&#26159; </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, third<span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org8c3e340"></a>get 方法<br />
+<div class="outline-text-5" id="text-org8c3e340">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">match</span> v.get<span style="color: #C586C0;">(</span><span style="color: #B5CEA8; font-weight: bold;">2</span><span style="color: #C586C0;">)</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">Some</span><span style="color: #DB8E73;">(</span>third<span style="color: #DB8E73;">)</span> =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"&#31532;&#19977;&#20010;&#20803;&#32032;&#26159; </span><span style="color: #DB8E73; font-style: italic;">{third}</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #35CDAF;">None</span> =&gt; <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"&#21435;&#20320;&#30340;&#31532;&#19977;&#20010;&#20803;&#32032;&#65292;&#26681;&#26412;&#27809;&#26377;&#65281;"</span><span style="color: #DB8E73;">)</span>,
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li><i>v.get</i> 的形式更安全,不会造成数组越界<br /></li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org7ef3672" class="outline-4">
+<h4 id="org7ef3672">遍历</h4>
+<div class="outline-text-4" id="text-org7ef3672">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">v</span> = <span style="color: #85DDFF; font-weight: bold;">vec!</span><span style="color: #C586C0;">[</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #B5CEA8; font-weight: bold;">2</span>, <span style="color: #B5CEA8; font-weight: bold;">3</span><span style="color: #C586C0;">]</span>;
+<span style="color: #339CDB;">for</span> <span style="color: #85DDFF;">i</span> <span style="color: #339CDB;">in</span> <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>v <span style="color: #C586C0;">{</span>
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{i}</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+<ul class="org-ul">
+<li><a id="org6f6c5d2"></a>修改<br />
+<div class="outline-text-5" id="text-org6f6c5d2">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">v</span> = <span style="color: #85DDFF; font-weight: bold;">vec!</span><span style="color: #C586C0;">[</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #B5CEA8; font-weight: bold;">2</span>, <span style="color: #B5CEA8; font-weight: bold;">3</span><span style="color: #C586C0;">]</span>;
+<span style="color: #339CDB;">for</span> <span style="color: #85DDFF;">i</span> <span style="color: #339CDB;">in</span> <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">mut</span> v <span style="color: #C586C0;">{</span>
+    *i += <span style="color: #B5CEA8; font-weight: bold;">10</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+加入 mut,并解引用<br />
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org63ca0db" class="outline-4">
+<h4 id="org63ca0db">利用枚举存储不同类型的元素</h4>
+<div class="outline-text-4" id="text-org63ca0db">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">enum</span> <span style="color: #35CDAF;">IpAddr</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">V4</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">String</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #35CDAF;">V6</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">String</span><span style="color: #DB8E73;">)</span>
+<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">(){</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">v</span> = <span style="color: #85DDFF; font-weight: bold;">vec!</span><span style="color: #DB8E73;">[</span>
+        <span style="color: #35CDAF;">IpAddr</span>::<span style="color: #35CDAF;">V4</span><span style="color: #579C4C;">(</span><span style="color: #DB8E73;">"127.0.0.1"</span>.to_string<span style="color: #85DDFF;">()</span><span style="color: #579C4C;">)</span>,
+        <span style="color: #35CDAF;">IpAddr</span>::<span style="color: #35CDAF;">V6</span><span style="color: #579C4C;">(</span><span style="color: #DB8E73;">"::1"</span>.to_string<span style="color: #85DDFF;">()</span><span style="color: #579C4C;">)</span>
+    <span style="color: #DB8E73;">]</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org55adc69" class="outline-4">
+<h4 id="org55adc69">排序</h4>
+<div class="outline-text-4" id="text-org55adc69">
+<p>
+排序分为稳定排序和非稳定排序, <b>非稳定</b> 排序的速度优于稳定算法<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">vec</span> = <span style="color: #85DDFF; font-weight: bold;">vec!</span><span style="color: #DB8E73;">[</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #B5CEA8; font-weight: bold;">5</span>, <span style="color: #B5CEA8; font-weight: bold;">10</span>, <span style="color: #B5CEA8; font-weight: bold;">2</span>, <span style="color: #B5CEA8; font-weight: bold;">15</span><span style="color: #DB8E73;">]</span>;
+    vec.sort_unstable<span style="color: #DB8E73;">()</span>;
+    <span style="color: #85DDFF; font-weight: bold;">assert_eq!</span><span style="color: #DB8E73;">(</span>vec, <span style="color: #85DDFF; font-weight: bold;">vec!</span><span style="color: #579C4C;">[</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #B5CEA8; font-weight: bold;">2</span>, <span style="color: #B5CEA8; font-weight: bold;">5</span>, <span style="color: #B5CEA8; font-weight: bold;">10</span>, <span style="color: #B5CEA8; font-weight: bold;">15</span><span style="color: #579C4C;">]</span><span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org11f1afb" class="outline-3">
+<h3 id="org11f1afb">HashMap</h3>
+<div class="outline-text-3" id="text-org11f1afb">
+<p>
+HashMap 中存储的是 KV 键值对,提供了平均复杂度为 O(1)的查询方法<br />
+</p>
+</div>
+<div id="outline-container-orgf8dc498" class="outline-4">
+<h4 id="orgf8dc498">创建</h4>
+<div class="outline-text-4" id="text-orgf8dc498">
+</div>
+<ul class="org-ul">
+<li><a id="orgbbc4ce1"></a>使用 new 方法<br />
+<div class="outline-text-5" id="text-orgbbc4ce1">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">collections</span>::<span style="color: #35CDAF;">HashMap</span>;
+
+<span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#21019;&#24314;&#19968;&#20010;HashMap&#65292;&#29992;&#20110;&#23384;&#20648;&#23453;&#30707;&#31181;&#31867;&#21644;&#23545;&#24212;&#30340;&#25968;&#37327;</span>
+<span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">my_gems</span> = <span style="color: #35CDAF;">HashMap</span>::new<span style="color: #C586C0;">()</span>;
+
+<span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#23558;&#23453;&#30707;&#31867;&#22411;&#21644;&#23545;&#24212;&#30340;&#25968;&#37327;&#20889;&#20837;&#34920;&#20013;</span>
+my_gems.insert<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"&#32418;&#23453;&#30707;"</span>, <span style="color: #B5CEA8; font-weight: bold;">1</span><span style="color: #C586C0;">)</span>;
+my_gems.insert<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"&#34013;&#23453;&#30707;"</span>, <span style="color: #B5CEA8; font-weight: bold;">2</span><span style="color: #C586C0;">)</span>;
+my_gems.insert<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"&#27827;&#36793;&#25441;&#30340;&#35823;&#20197;&#20026;&#26159;&#23453;&#30707;&#30340;&#30772;&#30707;&#22836;"</span>, <span style="color: #B5CEA8; font-weight: bold;">18</span><span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgb759e1f"></a>使用迭代器和 collect 方法<br />
+<div class="outline-text-5" id="text-orgb759e1f">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">collections</span>::<span style="color: #35CDAF;">HashMap</span>;
+
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">teams_list</span> = <span style="color: #85DDFF; font-weight: bold;">vec!</span><span style="color: #DB8E73;">[</span>
+        <span style="color: #579C4C;">(</span><span style="color: #DB8E73;">"&#20013;&#22269;&#38431;"</span>.to_string<span style="color: #85DDFF;">()</span>, <span style="color: #B5CEA8; font-weight: bold;">100</span><span style="color: #579C4C;">)</span>,
+        <span style="color: #579C4C;">(</span><span style="color: #DB8E73;">"&#32654;&#22269;&#38431;"</span>.to_string<span style="color: #85DDFF;">()</span>, <span style="color: #B5CEA8; font-weight: bold;">10</span><span style="color: #579C4C;">)</span>,
+        <span style="color: #579C4C;">(</span><span style="color: #DB8E73;">"&#26085;&#26412;&#38431;"</span>.to_string<span style="color: #85DDFF;">()</span>, <span style="color: #B5CEA8; font-weight: bold;">50</span><span style="color: #579C4C;">)</span>,
+    <span style="color: #DB8E73;">]</span>;
+
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">teams_map</span>: <span style="color: #35CDAF;">HashMap</span><span style="color: #DB8E73;">&lt;</span>_,_<span style="color: #DB8E73;">&gt;</span> = teams_list.into_iter<span style="color: #DB8E73;">()</span>.collect<span style="color: #DB8E73;">()</span>;
+
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{:?}</span><span style="color: #DB8E73;">"</span>,teams_map<span style="color: #DB8E73;">)</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+我们需要通过类型标注 <i>HashMap&lt;_,_&gt;</i> 来告诉编译器：请帮我们收集为 HashMap 集合类型，具体的 KV 类型，麻烦编译器您老人家帮我们推导<br />
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org164f86d" class="outline-4">
+<h4 id="org164f86d">所有权</h4>
+<div class="outline-text-4" id="text-org164f86d">
+<ul class="org-ul">
+<li>若类型实现 Copy 特征，该类型会被复制进 HashMap，因此无所谓所有权<br /></li>
+<li>若没实现 Copy 特征，所有权将被转移给 HashMap 中<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">collections</span>::<span style="color: #35CDAF;">HashMap</span>;
+
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">name</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Sunface"</span><span style="color: #DB8E73;">)</span>;
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">age</span> = <span style="color: #B5CEA8; font-weight: bold;">18</span>;
+
+    <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">handsome_boys</span> = <span style="color: #35CDAF;">HashMap</span>::new<span style="color: #DB8E73;">()</span>;
+    handsome_boys.insert<span style="color: #DB8E73;">(</span>name, age<span style="color: #DB8E73;">)</span>;
+
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"&#22240;&#20026;&#36807;&#20110;&#26080;&#32827;&#65292;</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">&#24050;&#32463;&#34987;&#20174;&#24069;&#27668;&#30007;&#23401;&#21517;&#21333;&#20013;&#38500;&#21517;"</span>, name<span style="color: #DB8E73;">)</span>;
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"&#36824;&#26377;&#65292;&#20182;&#30340;&#30495;&#23454;&#24180;&#40836;&#36828;&#36828;&#19981;&#27490;</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">&#23681;"</span>, age<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+在上例中,name 在被 insert 时,所有权被转移到了 hashmap 中,所以 name 失效了<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org98a9cb3" class="outline-4">
+<h4 id="org98a9cb3">查询</h4>
+<div class="outline-text-4" id="text-org98a9cb3">
+</div>
+<ul class="org-ul">
+<li><a id="orgc1664da"></a>通过 get 方法<br />
+<div class="outline-text-5" id="text-orgc1664da">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">collections</span>::<span style="color: #35CDAF;">HashMap</span>;
+
+<span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">scores</span> = <span style="color: #35CDAF;">HashMap</span>::new<span style="color: #C586C0;">()</span>;
+
+scores.insert<span style="color: #C586C0;">(</span><span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Blue"</span><span style="color: #DB8E73;">)</span>, <span style="color: #B5CEA8; font-weight: bold;">10</span><span style="color: #C586C0;">)</span>;
+scores.insert<span style="color: #C586C0;">(</span><span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Yellow"</span><span style="color: #DB8E73;">)</span>, <span style="color: #B5CEA8; font-weight: bold;">50</span><span style="color: #C586C0;">)</span>;
+
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">team_name</span> = <span style="color: #35CDAF;">String</span>::from<span style="color: #C586C0;">(</span><span style="color: #DB8E73;">"Blue"</span><span style="color: #C586C0;">)</span>;
+<span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">score</span>: <span style="color: #35CDAF;">Option</span><span style="color: #C586C0;">&lt;</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">i32</span><span style="color: #C586C0;">&gt;</span> = scores.get<span style="color: #C586C0;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>team_name<span style="color: #C586C0;">)</span>;
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgb2f9e8a"></a>通过循环遍历<br />
+<div class="outline-text-5" id="text-orgb2f9e8a">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">collections</span>::<span style="color: #35CDAF;">HashMap</span>;
+
+<span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">scores</span> = <span style="color: #35CDAF;">HashMap</span>::new<span style="color: #C586C0;">()</span>;
+
+scores.insert<span style="color: #C586C0;">(</span><span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Blue"</span><span style="color: #DB8E73;">)</span>, <span style="color: #B5CEA8; font-weight: bold;">10</span><span style="color: #C586C0;">)</span>;
+scores.insert<span style="color: #C586C0;">(</span><span style="color: #35CDAF;">String</span>::from<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Yellow"</span><span style="color: #DB8E73;">)</span>, <span style="color: #B5CEA8; font-weight: bold;">50</span><span style="color: #C586C0;">)</span>;
+
+<span style="color: #339CDB;">for</span> <span style="color: #C586C0;">(</span>key, value<span style="color: #C586C0;">)</span> <span style="color: #339CDB;">in</span> <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span>scores <span style="color: #C586C0;">{</span>
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, key, value<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-orgdd75a3a" class="outline-4">
+<h4 id="orgdd75a3a">更新</h4>
+<div class="outline-text-4" id="text-orgdd75a3a">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">collections</span>::<span style="color: #35CDAF;">HashMap</span>;
+
+    <span style="color: #339CDB;">let</span> <span style="color: #339CDB;">mut</span> <span style="color: #85DDFF;">scores</span> = <span style="color: #35CDAF;">HashMap</span>::new<span style="color: #DB8E73;">()</span>;
+
+    scores.insert<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Blue"</span>, <span style="color: #B5CEA8; font-weight: bold;">10</span><span style="color: #DB8E73;">)</span>;
+
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#35206;&#30422;&#24050;&#26377;&#30340;&#20540;</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">old</span> = scores.insert<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Blue"</span>, <span style="color: #B5CEA8; font-weight: bold;">20</span><span style="color: #DB8E73;">)</span>;
+    <span style="color: #85DDFF; font-weight: bold;">assert_eq!</span><span style="color: #DB8E73;">(</span>old, <span style="color: #35CDAF;">Some</span><span style="color: #579C4C;">(</span><span style="color: #B5CEA8; font-weight: bold;">10</span><span style="color: #579C4C;">)</span><span style="color: #DB8E73;">)</span>;
+
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#26597;&#35810;&#26032;&#25554;&#20837;&#30340;&#20540;</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">new</span> = scores.get<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Blue"</span><span style="color: #DB8E73;">)</span>;
+    <span style="color: #85DDFF; font-weight: bold;">assert_eq!</span><span style="color: #DB8E73;">(</span>new, <span style="color: #35CDAF;">Some</span><span style="color: #579C4C;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #B5CEA8; font-weight: bold;">20</span><span style="color: #579C4C;">)</span><span style="color: #DB8E73;">)</span>;
+
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#26597;&#35810;Yellow&#23545;&#24212;&#30340;&#20540;&#65292;&#33509;&#19981;&#23384;&#22312;&#21017;&#25554;&#20837;&#26032;&#20540;</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">v</span> = scores.entry<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Yellow"</span><span style="color: #DB8E73;">)</span>.or_insert<span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">5</span><span style="color: #DB8E73;">)</span>;
+    <span style="color: #85DDFF; font-weight: bold;">assert_eq!</span><span style="color: #DB8E73;">(</span>*v, <span style="color: #B5CEA8; font-weight: bold;">5</span><span style="color: #DB8E73;">)</span>; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#19981;&#23384;&#22312;&#65292;&#25554;&#20837;5</span>
+
+    <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#26597;&#35810;Yellow&#23545;&#24212;&#30340;&#20540;&#65292;&#33509;&#19981;&#23384;&#22312;&#21017;&#25554;&#20837;&#26032;&#20540;</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">v</span> = scores.entry<span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"Yellow"</span><span style="color: #DB8E73;">)</span>.or_insert<span style="color: #DB8E73;">(</span><span style="color: #B5CEA8; font-weight: bold;">50</span><span style="color: #DB8E73;">)</span>;
+    <span style="color: #85DDFF; font-weight: bold;">assert_eq!</span><span style="color: #DB8E73;">(</span>*v, <span style="color: #B5CEA8; font-weight: bold;">5</span><span style="color: #DB8E73;">)</span>; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#24050;&#32463;&#23384;&#22312;&#65292;&#22240;&#27492;50&#27809;&#26377;&#25554;&#20837;</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+利用 insert 更新<br />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2024-10-29 二 00:00</p>
+<p class="author">Author: FAN</p>
+<p class="date">Created: 2024-12-19 四 00:07</p>
+</div>
+</body>
+</html>

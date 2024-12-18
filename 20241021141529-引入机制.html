@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+<!-- 2024-12-19 四 00:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>引入机制</title>
+<meta name="author" content="FAN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet"
+                    href="mystyle.css"
+                    type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">引入机制</h1>
+<div id="outline-container-orga8fc747" class="outline-2">
+<h2 id="orga8fc747">WorkSpace(大型项目)</h2>
+<div class="outline-text-2" id="text-orga8fc747">
+<p>
+可以进一步将多个包联合在一起,组成工作空间<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org66a32ad" class="outline-2">
+<h2 id="org66a32ad">Package(项目)</h2>
+<div class="outline-text-2" id="text-org66a32ad">
+<ul class="org-ul">
+<li>有一个或多个 crate<br />
+<ul class="org-ul">
+<li>最多一个库,任意多二进制.<br />
+二进制文件通常位于 ./src/bin<br /></li>
+</ul></li>
+<li>包含一个 Cargo.toml 文件<br />
+<ul class="org-ul">
+<li>toml 文件中有[package]描述<br /></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf848dfc" class="outline-2">
+<h2 id="orgf848dfc">Crate(包)</h2>
+<div class="outline-text-2" id="text-orgf848dfc">
+<p>
+Crate 是一个单独的可编译单元,可编译成库或者可执行文件<br />
+</p>
+</div>
+<div id="outline-container-orgd8f7d52" class="outline-3">
+<h3 id="orgd8f7d52">二进制(可执行文件)</h3>
+<div class="outline-text-3" id="text-orgd8f7d52">
+<ul class="org-ul">
+<li>以 <b>./src/main.rs</b> 为原点(crate root)编译 crate<br /></li>
+<li>可编译为可执行程序<br />
+<ul class="org-ul">
+<li>每个 <b>./src/bin</b> 下文件都会被编译成独立的二进制文件<br /></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb9e04d5" class="outline-3">
+<h3 id="orgb9e04d5">库(Library)</h3>
+<div class="outline-text-3" id="text-orgb9e04d5">
+<ul class="org-ul">
+<li>以 <b>./src/lib.rs</b> 为原点编译 crate<br /></li>
+<li>大多数 crate 都是指库<br /></li>
+<li><p>
+静态库与动态库<br />
+</p>
+<ul class="org-ul">
+<li>区别<br /></li>
+</ul>
+<p>
+静态库在编译时会被编译进程序内部<br />
+动态库不会被编译进去<br />
+</p>
+<ul class="org-ul">
+<li>优缺点<br /></li>
+</ul>
+<p>
+静态库被打包后,加载速度快,可独立运行<br />
+动态库方便更新<br />
+</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org03c4ace" class="outline-2">
+<h2 id="org03c4ace">mod</h2>
+<div class="outline-text-2" id="text-org03c4ace">
+<p>
+默认情况下，所有的类型都是私有化的，包括函数、方法、结构体、枚举、常量，是的，就连模块本身也是私有化的<br />
+</p>
+</div>
+<div id="outline-container-orgb7fc5d8" class="outline-3">
+<h3 id="orgb7fc5d8">模块树</h3>
+<div class="outline-text-3" id="text-orgb7fc5d8">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#39184;&#21381;&#21069;&#21381;&#65292;&#29992;&#20110;&#21507;&#39277;</span>
+<span style="color: #339CDB;">mod</span> <span style="color: #339CDB;">front_of_house</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">mod</span> <span style="color: #339CDB;">hosting</span> <span style="color: #DB8E73;">{</span>
+        <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">add_to_waitlist</span><span style="color: #579C4C;">()</span> <span style="color: #579C4C;">{}</span>
+
+        <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">seat_at_table</span><span style="color: #579C4C;">()</span> <span style="color: #579C4C;">{}</span>
+    <span style="color: #DB8E73;">}</span>
+
+    <span style="color: #339CDB;">mod</span> <span style="color: #339CDB;">serving</span> <span style="color: #DB8E73;">{</span>
+        <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">take_order</span><span style="color: #579C4C;">()</span> <span style="color: #579C4C;">{}</span>
+
+        <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">serve_order</span><span style="color: #579C4C;">()</span> <span style="color: #579C4C;">{}</span>
+
+        <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">take_payment</span><span style="color: #579C4C;">()</span> <span style="color: #579C4C;">{}</span>
+    <span style="color: #DB8E73;">}</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org8f8fa62" class="outline-4">
+<h4 id="org8f8fa62"><b>mod.rs</b></h4>
+<div class="outline-text-4" id="text-org8f8fa62">
+<ul class="org-ul">
+<li>mod.rs 放入不同的文件夹下面,起到管理文件夹下不同模块可见性的作用<br /></li>
+<li>或者在 <b>./src/</b> 目录下放入与文件夹同名的 <i>rs</i> 文件<br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org8b94880" class="outline-3">
+<h3 id="org8b94880">mod 关键字</h3>
+<div class="outline-text-3" id="text-org8b94880">
+<p>
+相当于 import,加载其他文件的 mod<br />
+</p>
+<ul class="org-ul">
+<li>只有在 <b>main.rs</b> 文件中，才需要 <i>mod</i> 引入其他模块<br />
+在其他 <b>rs</b> 文件中，只需要用 <i>use</i> 引入其他模块函数<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3591272" class="outline-3">
+<h3 id="org3591272">use</h3>
+<div class="outline-text-3" id="text-org3591272">
+<p>
+使用 <i>use</i> 关键字把路径提前引入到当前作用域中，随后的调用就可以省略该路径<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">mod</span> <span style="color: #339CDB;">front_of_house</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">mod</span> <span style="color: #339CDB;">hosting</span> <span style="color: #DB8E73;">{</span>
+        <span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">add_to_waitlist</span><span style="color: #579C4C;">()</span> <span style="color: #579C4C;">{}</span>
+    <span style="color: #DB8E73;">}</span>
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">use</span> <span style="color: #339CDB;">front_of_house</span>::<span style="color: #339CDB;">hosting</span>::add_to_waitlist;
+
+<span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">eat_at_restaurant</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    add_to_waitlist<span style="color: #DB8E73;">()</span>;
+    add_to_waitlist<span style="color: #DB8E73;">()</span>;
+    add_to_waitlist<span style="color: #DB8E73;">()</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li><p>
+模块再导出 <i>pub use</i><br />
+当外部的模块项 A 被引入到当前模块中时，它的可见性自动被设置为私有的，如果你希望允许其它外部代码引用我们的模块项 A，那么可以对它进行再导出<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">pub</span> <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">crate</span>::<span style="color: #339CDB;">front_of_house</span>::hosting;
+</pre>
+</div></li>
+<li><p>
+简化引入 <i>use crate::{}</i><br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">collections</span>::<span style="color: #35CDAF;">HashMap</span>;
+  <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">collections</span>::<span style="color: #35CDAF;">BTreeMap</span>;
+  <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">collections</span>::<span style="color: #35CDAF;">HashSet</span>;
+
+  <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::io;
+  <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">io</span>::<span style="color: #35CDAF;">Write</span>;
+</pre>
+</div>
+<p>
+可以简化为<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">collections</span>::<span style="color: #C586C0;">{</span><span style="color: #35CDAF;">HashMap</span>,<span style="color: #35CDAF;">BTreeMap</span>,<span style="color: #35CDAF;">HashSet</span><span style="color: #C586C0;">}</span>;
+  <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #C586C0;">{</span><span style="color: #339CDB;">self</span>,<span style="color: #35CDAF;">Write</span><span style="color: #C586C0;">}</span>;
+</pre>
+</div></li>
+<li><p>
+关键字 <i>as</i><br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">io</span>::<span style="color: #35CDAF;">Result</span> <span style="color: #339CDB;">as</span> <span style="color: #35CDAF;">IoResult</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org92717e4" class="outline-3">
+<h3 id="org92717e4">pub</h3>
+<div class="outline-text-3" id="text-org92717e4">
+<ul class="org-ul">
+<li><i>pub</i> ：公共的，任何人都可以访问。<br /></li>
+<li><i>pub(crate)</i> ：在当前 crate 内是公共的，但对外部 crate 不可见。<br /></li>
+<li><i>pub(in path)</i> ：在指定路径内的模块是公共的。<br /></li>
+<li><i>pub(self)</i> ：在当前模块内是公共的。<br /></li>
+<li><i>pub(super)</i> ：在当前模块的父模块内是公共的。<br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org77f767d" class="outline-2">
+<h2 id="org77f767d">path</h2>
+<div class="outline-text-2" id="text-org77f767d">
+</div>
+<div id="outline-container-orgb78dc11" class="outline-3">
+<h3 id="orgb78dc11">绝对路径</h3>
+<div class="outline-text-3" id="text-orgb78dc11">
+<p>
+从包根开始,以包名或者 crate 作为开头.<br />
+<i>crate::front_of_house::hosting::add_to_waitlist();</i><br />
+</p>
+</div>
+</div>
+<div id="outline-container-org34e3f51" class="outline-3">
+<h3 id="org34e3f51">相对路径</h3>
+<div class="outline-text-3" id="text-org34e3f51">
+<p>
+从当前模块开始,以当前模块或者 self,super 作为开头<br />
+<i>front_of_house::hosting::add_to_waitlist();</i><br />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2024-10-29 二 00:00</p>
+<p class="author">Author: FAN</p>
+<p class="date">Created: 2024-12-19 四 00:07</p>
+</div>
+</body>
+</html>

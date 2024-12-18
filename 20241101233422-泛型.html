@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+<!-- 2024-12-19 四 00:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>泛型</title>
+<meta name="author" content="FAN" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet"
+                    href="mystyle.css"
+                    type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">泛型</h1>
+<div id="outline-container-org692539c" class="outline-2">
+<h2 id="org692539c">定义</h2>
+<div class="outline-text-2" id="text-org692539c">
+<ul class="org-ul">
+<li>泛型是通过抽象函数用来简化代码,静态分发<br /></li>
+<li>用 T,E 等泛型参数来替代参数类型<br /></li>
+<li>泛型没有性能开销,代价是损失了编译速度和增大了生成文件的大小<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">add</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;(</span><span style="color: #85DDFF;">a</span>:<span style="color: #35CDAF;">T</span>, <span style="color: #85DDFF;">b</span>:<span style="color: #35CDAF;">T</span><span style="color: #C586C0;">)</span> -&gt; <span style="color: #35CDAF;">T</span> <span style="color: #C586C0;">{</span> <span style="color: #579C4C;">// </span><span style="color: #579C4C;">fn add&lt;T: std::ops::Add&lt;Output = T&gt;&gt;(a: T, b: T) -&gt; T{</span>
+    a + b
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"add i8: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, add<span style="color: #579C4C;">(</span>2<span style="color: #35CDAF;">i8</span>, 3<span style="color: #35CDAF;">i8</span><span style="color: #579C4C;">)</span><span style="color: #DB8E73;">)</span>;
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"add i32: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, add<span style="color: #579C4C;">(</span><span style="color: #B5CEA8; font-weight: bold;">20</span>, <span style="color: #B5CEA8; font-weight: bold;">30</span><span style="color: #579C4C;">)</span><span style="color: #DB8E73;">)</span>;
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"add f64: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, add<span style="color: #579C4C;">(</span><span style="color: #B5CEA8; font-weight: bold;">1.23</span>, <span style="color: #B5CEA8; font-weight: bold;">1.23</span><span style="color: #579C4C;">)</span><span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5aeffc5" class="outline-2">
+<h2 id="org5aeffc5">显式地指定泛型的类型参数</h2>
+<div class="outline-text-2" id="text-org5aeffc5">
+<ul class="org-ul">
+<li>给泛型参数加约束(bound)<br />
+<code>fn add&lt; /T: std::ops::Add&lt;Output = T&gt;/ &gt;(a: T, b: T) -&gt; T</code> 相当于 <b>where</b><br />
+<code>fn add&lt;T&gt;(a: T, b: T) -&gt; T /where T: std::ops::Add&lt;Output = T&gt;/ ,</code><br /></li>
+
+<li><p>
+在调用泛型函数时,要加具体类型<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">use</span> <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">fmt</span>::<span style="color: #35CDAF;">Display</span>;
+
+  <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">create_and_print</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;()</span> <span style="color: #339CDB;">where</span> <span style="color: #85DDFF;">T</span>: <span style="color: #35CDAF;">From</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">i32</span><span style="color: #C586C0;">&gt;</span> + <span style="color: #35CDAF;">Display</span> <span style="color: #C586C0;">{</span>
+      <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">a</span>: <span style="color: #35CDAF;">T</span> = <span style="color: #B5CEA8; font-weight: bold;">100</span>.into<span style="color: #DB8E73;">()</span>; <span style="color: #579C4C;">// </span><span style="color: #579C4C;">&#21019;&#24314;&#20102;&#31867;&#22411;&#20026; T &#30340;&#21464;&#37327; a&#65292;&#23427;&#30340;&#21021;&#22987;&#20540;&#30001; 100 &#36716;&#25442;&#32780;&#26469;</span>
+      <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"a is: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, a<span style="color: #DB8E73;">)</span>;
+  <span style="color: #C586C0;">}</span>
+
+  <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+      create_and_print::<span style="color: #DB8E73;">&lt;</span><span style="color: #35CDAF;">i64</span><span style="color: #DB8E73;">&gt;()</span>;
+  <span style="color: #C586C0;">}</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org32a7dec" class="outline-2">
+<h2 id="org32a7dec">结构体中使用泛型</h2>
+<div class="outline-text-2" id="text-org32a7dec">
+<div class="org-src-container">
+<pre class="src src-rust">  <span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Point</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+      <span style="color: #85DDFF;">x</span>: <span style="color: #35CDAF;">T</span>,
+      <span style="color: #85DDFF;">y</span>: <span style="color: #35CDAF;">T</span>,
+  <span style="color: #C586C0;">}</span>
+
+  <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+      <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">integer</span> = <span style="color: #35CDAF;">Point</span> <span style="color: #DB8E73;">{</span> <span style="color: #85DDFF;">x</span>: <span style="color: #B5CEA8; font-weight: bold;">5</span>, <span style="color: #85DDFF;">y</span>: <span style="color: #B5CEA8; font-weight: bold;">10</span> <span style="color: #DB8E73;">}</span>;
+      <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">float</span> = <span style="color: #35CDAF;">Point</span> <span style="color: #DB8E73;">{</span> <span style="color: #85DDFF;">x</span>: <span style="color: #B5CEA8; font-weight: bold;">1.0</span>, <span style="color: #85DDFF;">y</span>: <span style="color: #B5CEA8; font-weight: bold;">4.0</span> <span style="color: #DB8E73;">}</span>;
+  <span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>泛型参数要提前声明<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org85420bd" class="outline-2">
+<h2 id="org85420bd">枚举中使用泛型</h2>
+<div class="outline-text-2" id="text-org85420bd">
+<ul class="org-ul">
+<li>Option<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">enum</span> <span style="color: #35CDAF;">Option</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">Some</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">T</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #35CDAF;">None</span>,
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>Result<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">enum</span> <span style="color: #35CDAF;">Result</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span>, <span style="color: #35CDAF;">E</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #35CDAF;">Ok</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">T</span><span style="color: #DB8E73;">)</span>,
+    <span style="color: #35CDAF;">Err</span><span style="color: #DB8E73;">(</span><span style="color: #35CDAF;">E</span><span style="color: #DB8E73;">)</span>,
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org719418f" class="outline-2">
+<h2 id="org719418f"><a href="20241024213610-函数.html#ID-5071e3fd-3a9e-4c1d-b2c3-2ef2ec4dd12c">方法</a>中使用泛型</h2>
+<div class="outline-text-2" id="text-org719418f">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">struct</span> <span style="color: #35CDAF;">Point</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #85DDFF;">x</span>: <span style="color: #35CDAF;">T</span>,
+    <span style="color: #85DDFF;">y</span>: <span style="color: #35CDAF;">T</span>,
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">impl</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;</span> <span style="color: #35CDAF;">Point</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">T</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">x</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span> -&gt; <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #35CDAF;">T</span> <span style="color: #DB8E73;">{</span>
+        <span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span>.x
+    <span style="color: #DB8E73;">}</span>
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">p</span> = <span style="color: #35CDAF;">Point</span> <span style="color: #DB8E73;">{</span> <span style="color: #85DDFF;">x</span>: <span style="color: #B5CEA8; font-weight: bold;">5</span>, <span style="color: #85DDFF;">y</span>: <span style="color: #B5CEA8; font-weight: bold;">10</span> <span style="color: #DB8E73;">}</span>;
+
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"p.x = </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, p.x<span style="color: #579C4C;">()</span><span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>形式为 <code>impl&lt;T&gt; method&lt;T&gt; {}</code><br /></li>
+</ul>
+</div>
+<div id="outline-container-org8ce79a3" class="outline-3">
+<h3 id="org8ce79a3">为具体的泛型类型实现方法</h3>
+<div class="outline-text-3" id="text-org8ce79a3">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">impl</span> <span style="color: #35CDAF;">Point</span><span style="color: #C586C0;">&lt;</span><span style="color: #35CDAF;">f32</span><span style="color: #C586C0;">&gt;</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">distance_from_origin</span><span style="color: #DB8E73;">(</span><span style="color: #d4d4d4; background-color: #1e1e1e;">&amp;</span><span style="color: #339CDB;">self</span><span style="color: #DB8E73;">)</span> -&gt; <span style="color: #35CDAF;">f32</span> <span style="color: #DB8E73;">{</span>
+        <span style="color: #579C4C;">(</span><span style="color: #339CDB;">self</span>.x.powi<span style="color: #85DDFF;">(</span><span style="color: #B5CEA8; font-weight: bold;">2</span><span style="color: #85DDFF;">)</span> + <span style="color: #339CDB;">self</span>.y.powi<span style="color: #85DDFF;">(</span><span style="color: #B5CEA8; font-weight: bold;">2</span><span style="color: #85DDFF;">)</span><span style="color: #579C4C;">)</span>.sqrt<span style="color: #579C4C;">()</span>
+    <span style="color: #DB8E73;">}</span>
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<p>
+Point&lt;f32&gt; 类型会有一个方法 distance_from_origin，而其他 T 不是 f32 类型的 Point&lt;T&gt; 实例则没有定义此方法<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbb3b241" class="outline-2">
+<h2 id="orgbb3b241">const 泛型</h2>
+<div class="outline-text-2" id="text-orgbb3b241">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">display_array</span><span style="color: #C586C0;">&lt;</span><span style="color: #85DDFF;">T</span>: <span style="color: #339CDB;">std</span>::<span style="color: #339CDB;">fmt</span>::<span style="color: #35CDAF;">Debug</span>, <span style="color: #339CDB;">const</span> <span style="color: #85DDFF;">N</span>: <span style="color: #35CDAF;">usize</span><span style="color: #C586C0;">&gt;(</span><span style="color: #85DDFF;">arr</span>: <span style="color: #DB8E73;">[</span><span style="color: #35CDAF;">T</span>; <span style="color: #35CDAF;">N</span><span style="color: #DB8E73;">]</span><span style="color: #C586C0;">)</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"</span><span style="color: #DB8E73; font-style: italic;">{:?}</span><span style="color: #DB8E73;">"</span>, arr<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">arr</span>: <span style="color: #DB8E73;">[</span><span style="color: #35CDAF;">i32</span>; <span style="color: #B5CEA8; font-weight: bold;">3</span><span style="color: #DB8E73;">]</span> = <span style="color: #DB8E73;">[</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #B5CEA8; font-weight: bold;">2</span>, <span style="color: #B5CEA8; font-weight: bold;">3</span><span style="color: #DB8E73;">]</span>;
+    display_array<span style="color: #DB8E73;">(</span>arr<span style="color: #DB8E73;">)</span>;
+
+    <span style="color: #339CDB;">let</span> <span style="color: #85DDFF;">arr</span>: <span style="color: #DB8E73;">[</span><span style="color: #35CDAF;">i32</span>; <span style="color: #B5CEA8; font-weight: bold;">2</span><span style="color: #DB8E73;">]</span> = <span style="color: #DB8E73;">[</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #B5CEA8; font-weight: bold;">2</span><span style="color: #DB8E73;">]</span>;
+    display_array<span style="color: #DB8E73;">(</span>arr<span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>T 是一个基于类型的,实现 Debug 特征的参数<br /></li>
+<li>N 是一个基于值的,const usize 类型的参数<br /></li>
+</ul>
+<ul class="org-ul">
+<li>方便数组的泛型,特别使长度方面<br /></li>
+</ul>
+</div>
+<div id="outline-container-orgd2fbe6e" class="outline-3">
+<h3 id="orgd2fbe6e">const fn</h3>
+<div class="outline-text-3" id="text-orgd2fbe6e">
+<ul class="org-ul">
+<li>主要是通过 <i>const fn</i> 源码告诉读者这个值的来源<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #339CDB;">const</span> <span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">add</span><span style="color: #C586C0;">(</span><span style="color: #85DDFF;">a</span>: <span style="color: #35CDAF;">usize</span>, <span style="color: #85DDFF;">b</span>: <span style="color: #35CDAF;">usize</span><span style="color: #C586C0;">)</span> -&gt; <span style="color: #35CDAF;">usize</span> <span style="color: #C586C0;">{</span>
+    a + b
+<span style="color: #C586C0;">}</span>
+
+<span style="color: #339CDB;">const</span> <span style="color: #85DDFF;">RESULT</span>: <span style="color: #35CDAF;">usize</span> = add<span style="color: #C586C0;">(</span><span style="color: #B5CEA8; font-weight: bold;">5</span>, <span style="color: #B5CEA8; font-weight: bold;">10</span><span style="color: #C586C0;">)</span>;
+
+<span style="color: #339CDB;">fn</span> <span style="color: #D9DAA2;">main</span><span style="color: #C586C0;">()</span> <span style="color: #C586C0;">{</span>
+    <span style="color: #C586C0;">println!</span><span style="color: #DB8E73;">(</span><span style="color: #DB8E73;">"The result is: </span><span style="color: #DB8E73; font-style: italic;">{}</span><span style="color: #DB8E73;">"</span>, <span style="color: #35CDAF;">RESULT</span><span style="color: #DB8E73;">)</span>;
+<span style="color: #C586C0;">}</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li><i>const fn</i> 允许我们在编译期对函数进行求值<br /></li>
+<li>不能将随机数生成器写成 <i>const fn</i><br /></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2024-11-01 五 00:00</p>
+<p class="author">Author: FAN</p>
+<p class="date">Created: 2024-12-19 四 00:07</p>
+</div>
+</body>
+</html>
