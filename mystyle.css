@@ -1,3 +1,7 @@
 #postamble {
    display:none;
 }
+
+span {
+  background-color: unset !important;
+}
